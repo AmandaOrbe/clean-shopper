@@ -34,3 +34,4 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Project context: See /docs/project-context.md -- full project intake and design decisions
 - Project context skill: Run /project-context with source material (brief, PRD, notes) to generate or update /docs/project-context.md
 - Prompt optimizer skill: Use /prompt-optimizer to evaluate and refine instructions before sending them.
+- Design system: See /docs/design-system.md — follow these visual specifications for all UI work. Do not hardcode colors, font sizes, spacing, or shadows.
