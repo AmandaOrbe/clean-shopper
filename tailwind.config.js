@@ -5,42 +5,44 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#6B8770',
-          light: '#8FAD94',
-          dark: '#4D6654',
+          DEFAULT: '#1B3829',
+          light: '#2D5A3E',
+          dark: '#0F2119',
         },
         secondary: {
-          DEFAULT: '#E8DFD0',
+          DEFAULT: '#F47820',
+          dark: '#D4650F',
         },
         accent: {
-          DEFAULT: '#C4714F',
+          DEFAULT: '#D4F53C',
+          dark: '#BADA2C',
         },
-        success: '#4A7C59',
-        warning: '#C4943A',
-        error: '#B85450',
+        success: '#16A34A',
+        warning: '#D97706',
+        error: '#DC2626',
         neutral: {
-          50: '#FDFAF5',
-          100: '#F5F0E8',
-          200: '#E5DDD0',
-          400: '#B8A898',
-          600: '#6B5C4E',
-          900: '#2D2420',
+          50: '#FFFFFF',
+          100: '#F5F5F0',
+          200: '#E2E2DA',
+          400: '#98988E',
+          600: '#464640',
+          900: '#121210',
         },
       },
 
       fontFamily: {
-        sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
 
       fontSize: {
-        display: ['48px', { lineHeight: '1.1', fontWeight: '700' }],
-        h1:      ['36px', { lineHeight: '1.2', fontWeight: '700' }],
-        h2:      ['28px', { lineHeight: '1.3', fontWeight: '600' }],
-        h3:      ['22px', { lineHeight: '1.3', fontWeight: '600' }],
-        h4:      ['18px', { lineHeight: '1.4', fontWeight: '600' }],
-        body:    ['16px', { lineHeight: '1.6', fontWeight: '400' }],
-        small:   ['14px', { lineHeight: '1.5', fontWeight: '400' }],
-        micro:   ['12px', { lineHeight: '1.4', fontWeight: '400' }],
+        display: ['56px', { lineHeight: '1.05', fontWeight: '800' }],
+        h1:      ['40px', { lineHeight: '1.15', fontWeight: '700' }],
+        h2:      ['28px', { lineHeight: '1.25', fontWeight: '700' }],
+        h3:      ['20px', { lineHeight: '1.35', fontWeight: '600' }],
+        h4:      ['16px', { lineHeight: '1.4',  fontWeight: '600' }],
+        body:    ['16px', { lineHeight: '1.6',  fontWeight: '400' }],
+        small:   ['14px', { lineHeight: '1.5',  fontWeight: '400' }],
+        micro:   ['12px', { lineHeight: '1.4',  fontWeight: '400' }],
       },
 
       spacing: {
@@ -55,16 +57,16 @@ export default {
       },
 
       borderRadius: {
-        sm:   '6px',
-        md:   '12px',
-        lg:   '20px',
+        sm:   '4px',
+        md:   '8px',
+        lg:   '16px',
         full: '9999px',
       },
 
       boxShadow: {
-        sm: '0 1px 3px rgba(45, 36, 32, 0.08)',
-        md: '0 4px 12px rgba(45, 36, 32, 0.10)',
-        lg: '0 8px 24px rgba(45, 36, 32, 0.13)',
+        sm: '0 1px 4px rgba(0, 0, 0, 0.08)',
+        md: '0 4px 16px rgba(0, 0, 0, 0.12)',
+        lg: '0 12px 40px rgba(0, 0, 0, 0.16)',
       },
     },
   },

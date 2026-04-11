@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "clean-shopper",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["./start-dev.sh"],
+      "port": 5173
+    }
+  ]
+}

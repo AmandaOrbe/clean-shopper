@@ -13,8 +13,13 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Vercel -- deployment
 - Tailwind CSS -- styling
 
+## File Organization
+- Shared components (reused across more than one screen) belong in /src/components/
+- Files specific to one screen belong in that screen's folder under /src/features/ (e.g. /src/features/browse/)
+- Do not mix the two — a component that lives in /src/features/ should never be imported by another feature, and a component in /src/components/ should never contain logic tied to a single screen
+
 ## Conventions
-- Components: PascalCase filenames, one component per file, lives in /src/components/
+- Components: PascalCase filenames, one component per file, lives in /src/components/ (if shared) or the relevant /src/features/ subfolder (if screen-specific)
 - Components: Always check /docs/component-spec.md before building any UI element. If an existing component covers the use case, use it. Only create a new component if no spec covers the pattern, and add the new component to component-spec.md before moving on.
 - Utility functions: camelCase, lives in /src/lib/
 - API calls: all external API calls through /src/lib/api/, never inline in components
