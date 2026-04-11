@@ -1,22 +1,19 @@
-import type { FC } from 'react';
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-export interface NavBarProps {
-  activeRoute: string;
-}
+import { Link, useLocation } from 'react-router-dom';
 
 // ─── Nav Items (V1) ───────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
-  { label: 'Search',        route: '/'        },
+  { label: 'Search',        route: '/search'   },
+  { label: 'Browse',        route: '/'         },
   { label: 'My Library',    route: '/library'  },
   { label: 'Shopping List', route: '/list'     },
 ] as const;
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-const NavBar: FC<NavBarProps> = ({ activeRoute }) => {
+const NavBar = () => {
+  const { pathname } = useLocation();
+
   return (
     <nav
       className="
@@ -26,18 +23,18 @@ const NavBar: FC<NavBarProps> = ({ activeRoute }) => {
       "
     >
       {/* ── App name ── */}
-      <span className="text-h3 text-primary font-bold">
+      <Link to="/" className="text-h3 text-primary font-bold no-underline">
         Clean Shopper
-      </span>
+      </Link>
 
       {/* ── Nav links ── */}
       <ul className="flex items-center gap-space-xl list-none m-0 p-0">
         {NAV_ITEMS.map(({ label, route }) => {
-          const isActive = activeRoute === route;
+          const isActive = pathname === route;
           return (
             <li key={route}>
-              <a
-                href={route}
+              <Link
+                to={route}
                 className={[
                   'text-body transition-colors duration-150 no-underline',
                   isActive
@@ -47,7 +44,7 @@ const NavBar: FC<NavBarProps> = ({ activeRoute }) => {
                 aria-current={isActive ? 'page' : undefined}
               >
                 {label}
-              </a>
+              </Link>
             </li>
           );
         })}

@@ -19,6 +19,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 6. [Button](#6-button)
 7. [InputField](#7-inputfield)
 8. [EmptyState](#8-emptystate)
+9. [FilterPill](#9-filterpill)
 
 ---
 
@@ -32,39 +33,52 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | Prop | Type | Required | Default | Notes |
 |---|---|---|---|---|
 | `name` | `string` | ✅ | — | Product display name |
+| `brand` | `string` | ❌ | — | Brand name shown below the product name in text-small |
 | `safetyRating` | `'clean' \| 'caution' \| 'avoid'` | ✅ | — | Drives SafetyBadge color |
+| `safetyScore` | `number` | ❌ | — | Score shown as `92/100` below the badge |
 | `category` | `string` | ✅ | — | Passed to CategoryTag |
 | `description` | `string` | ✅ | — | 1–2 sentence summary |
 | `onClick` | `() => void` | ❌ | — | Makes card interactive; omit for static display |
+| `onSave` | `() => void` | ❌ | — | Renders a Save to List button inside the card when provided |
+| `isSaved` | `boolean` | ❌ | `false` | Toggles the save button label and style |
 | `isLoading` | `boolean` | ❌ | `false` | Renders skeleton state |
 
 ### Visual Structure
 ```
 <article>
-  bg-neutral-100 rounded-lg shadow-sm border border-neutral-200
+  bg-white rounded-lg shadow-sm
   p-space-lg flex flex-col gap-space-sm
   [interactive: cursor-pointer transition-shadow duration-200]
 
   ├── <header> flex items-start justify-between gap-space-sm
-  │     ├── <h3> text-h3 text-neutral-900
-  │     └── <SafetyBadge rating={safetyRating} />
+  │     ├── <div> flex flex-col gap-space-xs
+  │     │     ├── <h3> text-h3 text-neutral-900
+  │     │     └── <span> text-small text-neutral-400  ← brand (optional)
+  │     └── <div> flex flex-col items-end gap-space-xs shrink-0
+  │           ├── <SafetyBadge rating={safetyRating} />
+  │           └── <span> text-micro text-neutral-400  ← score (optional)
   │
   ├── <CategoryTag label={category} />
   │
-  └── <p> text-body text-neutral-600
+  ├── <p> text-body text-neutral-600
+  │
+  └── [onSave] <div> pt-space-xs
+        └── <Button variant="secondary"|"ghost" />  ← text+padding wide, left-aligned
 ```
 
 ### States
 | State | Treatment |
 |---|---|
-| Default | `shadow-sm`, `border-neutral-200` |
+| Default | `shadow-sm`, no border |
 | Hover (interactive only) | `hover:shadow-md` |
+| Save default | Secondary Button, label "Save to List" |
+| Save active | Ghost Button, label "✓ Saved" |
 | Loading | Replace content with skeleton bars: `bg-neutral-200 rounded-md animate-pulse` |
 
 ### Usage Rules
 - **Use** when displaying a product in any list, grid, or search result.
 - **Do not use** for a full product detail view — ProductCard is always a summary.
-- **Do not add** action buttons (save, add to list) directly inside this component — handle via the `onClick` prop or a wrapper.
+- The save button is sized to text + padding (not full width) and always left-aligned.
 - One SafetyBadge per card. Never render two ratings on the same card.
 
 ---
@@ -439,3 +453,49 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 - Keep `heading` to five words or fewer.
 - Keep `message` encouraging, not technical. Do not expose API errors or system messages in EmptyState copy.
 - If an `action` is provided, it must lead the user toward populating the empty state (e.g. "Start searching" not "Go to settings").
+
+---
+
+## 9. FilterPill
+
+**Purpose:** A toggleable pill button used to filter a list of results by a single dimension (e.g. category, rating). Inactive state is visually quiet; active state is prominent.
+
+**Used in:** Browse page (category filter row), library sidebar, any filterable list.
+
+### Props
+| Prop | Type | Required | Default | Notes |
+|---|---|---|---|---|
+| `label` | `string` | ✅ | — | Filter label text |
+| `isActive` | `boolean` | ❌ | `false` | Drives active visual state |
+| `onClick` | `() => void` | ❌ | — | Toggle handler |
+
+### Visual Structure
+```
+<button>
+  inline-flex items-center rounded-full
+  px-space-md py-space-sm
+  text-small transition-colors duration-150 cursor-pointer
+
+  Inactive:
+    bg-neutral-200 text-neutral-600 font-medium
+    hover:bg-neutral-400 hover:text-neutral-50
+
+  Active:
+    bg-primary text-neutral-50 font-bold
+    hover:bg-primary-dark
+```
+
+### States
+| State | Treatment |
+|---|---|
+| Inactive | `bg-neutral-200 text-neutral-600 font-medium` |
+| Inactive hover | `bg-neutral-400 text-neutral-50` |
+| Active | `bg-primary text-neutral-50 font-bold` |
+| Active hover | `bg-primary-dark` |
+
+### Usage Rules
+- **Use** for single-dimension filter controls in any list or grid context.
+- **Do not use** for navigation — use NavBar links instead.
+- **Do not use** for boolean attributes on a product — those belong on the ProductCard or a detail view.
+- Render as a horizontal row of pills; wrap naturally on small screens.
+- Only one pill per filter dimension should be active at a time unless multi-select is explicitly required.

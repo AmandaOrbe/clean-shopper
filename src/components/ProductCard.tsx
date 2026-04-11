@@ -78,7 +78,7 @@ const ProductCard: FC<ProductCardProps> = ({
       }
       className={[
         'bg-white rounded-lg shadow-sm',
-        'p-space-lg flex flex-col gap-space-sm h-full',
+        'p-space-xl flex flex-col gap-space-md h-full',
         'transition-shadow duration-200',
         isInteractive ? 'cursor-pointer hover:shadow-md' : '',
       ]
@@ -87,7 +87,7 @@ const ProductCard: FC<ProductCardProps> = ({
     >
       {/* ── Header: name + safety badge ── */}
       <header className="flex items-start justify-between gap-space-sm">
-        <div className="flex flex-col gap-space-xs">
+        <div className="flex flex-col gap-space-sm">
           <h3 className="text-h3 text-neutral-900">{name}</h3>
           {brand && (
             <span className="text-small text-neutral-400">{brand}</span>

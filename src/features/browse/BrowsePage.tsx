@@ -1,88 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard';
 import type { SafetyRating } from '../../components/ProductCard';
+import FilterPill from '../../components/FilterPill';
+import { supabase } from '../../lib/supabase';
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
   brand: string;
-  safetyRating: SafetyRating;
-  safetyScore: number;
+  safety_rating: SafetyRating;
+  safety_score: number;
   category: string;
   description: string;
 }
 
-const PRODUCTS: Product[] = [
-  {
-    id: '1',
-    name: 'Pure Castile Soap',
-    brand: "Dr. Bronner's",
-    safetyRating: 'clean',
-    safetyScore: 92,
-    category: 'Personal Care',
-    description:
-      'Organic, fair trade, no synthetic preservatives or detergents. Safe for the whole family.',
-  },
-  {
-    id: '2',
-    name: 'Beauty Bar',
-    brand: 'Dove',
-    safetyRating: 'caution',
-    safetyScore: 54,
-    category: 'Personal Care',
-    description:
-      'Mild cleansers with good moisture retention. Contains a few synthetic ingredients flagged at low-moderate concern by EWG.',
-  },
-  {
-    id: '3',
-    name: 'All-Purpose Cleaner',
-    brand: 'Method',
-    safetyRating: 'clean',
-    safetyScore: 88,
-    category: 'Home Cleaning',
-    description:
-      'Plant-based surfactants, no harsh chemicals. Biodegradable formula with non-toxic, naturally derived fragrance.',
-  },
-  {
-    id: '4',
-    name: 'Multi-Surface Spray',
-    brand: 'Mr. Clean',
-    safetyRating: 'avoid',
-    safetyScore: 24,
-    category: 'Home Cleaning',
-    description:
-      'Contains several synthetic compounds including fragrance chemicals rated high concern by EWG. Not recommended for households with children.',
-  },
-  {
-    id: '5',
-    name: 'Baby Lotion',
-    brand: "Burt's Bees",
-    safetyRating: 'clean',
-    safetyScore: 94,
-    category: 'Baby Care',
-    description:
-      '98.9% natural origin ingredients. Pediatrician tested, free from parabens, phthalates, and petrolatum.',
-  },
-  {
-    id: '6',
-    name: 'Baby Shampoo',
-    brand: "Johnson's",
-    safetyRating: 'caution',
-    safetyScore: 51,
-    category: 'Baby Care',
-    description:
-      'Gentle no-tears formula. Contains synthetic preservatives rated at moderate concern — better options available for daily use.',
-  },
-];
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 const BrowsePage = () => {
-  const [saved, setSaved] = useState<Set<string>>(new Set());
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [saved, setSaved] = useState<Set<number>>(new Set());
 
-  const toggleSave = (id: string) => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('name');
+
+      if (!error && data) {
+        setProducts(data);
+      }
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, []);
+
+  const categories = Array.from(new Set(products.map(p => p.category))).sort();
+
+  const visibleProducts = activeCategory
+    ? products.filter(p => p.category === activeCategory)
+    : products;
+
+  const toggleSave = (id: number) => {
     setSaved(prev => {
       const next = new Set(prev);
       if (next.has(id)) {
@@ -94,24 +58,52 @@ const BrowsePage = () => {
     });
   };
 
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(prev => (prev === category ? null : category));
+  };
+
   return (
     <main className="py-space-2xl px-space-3xl">
       <h1 className="text-h1 text-neutral-900 mb-space-2xl">Browse Products</h1>
 
+      {!loading && categories.length > 0 && (
+        <div className="flex flex-wrap gap-space-sm mb-space-2xl">
+          {categories.map(category => (
+            <FilterPill
+              key={category}
+              label={category}
+              isActive={activeCategory === category}
+              onClick={() => handleCategoryClick(category)}
+            />
+          ))}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl">
-        {PRODUCTS.map(product => (
-          <ProductCard
-            key={product.id}
-            name={product.name}
-            brand={product.brand}
-            safetyRating={product.safetyRating}
-            safetyScore={product.safetyScore}
-            category={product.category}
-            description={product.description}
-            onSave={() => toggleSave(product.id)}
-            isSaved={saved.has(product.id)}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 6 }).map((_, i) => (
+              <ProductCard
+                key={i}
+                name=""
+                safetyRating="clean"
+                category=""
+                description=""
+                isLoading
+              />
+            ))
+          : visibleProducts.map(product => (
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                brand={product.brand}
+                safetyRating={product.safety_rating}
+                safetyScore={product.safety_score}
+                category={product.category}
+                description={product.description}
+                onSave={() => toggleSave(product.id)}
+                isSaved={saved.has(product.id)}
+              />
+            ))}
       </div>
     </main>
   );
