@@ -45,28 +45,35 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | `onSave` | `() => void` | ❌ | — | Renders a Save to List button inside the card when provided |
 | `isSaved` | `boolean` | ❌ | `false` | Toggles the save button label and style |
 | `isLoading` | `boolean` | ❌ | `false` | Renders skeleton state |
+| `imageUrl` | `string` | ❌ | — | Product image URL. When omitted, renders a neutral placeholder tile at the same aspect ratio with a centered `Package` icon so layout does not shift. |
+| `retailer` | `string` | ❌ | — | Small caption rendered above the save button, prefixed "via" (e.g. "via Target"). `text-micro text-neutral-400 uppercase tracking-wide`. |
 
 ### Visual Structure
 ```
 <article>
-  bg-white rounded-lg shadow-sm
-  p-space-xl flex flex-col gap-space-md
-  [interactive: cursor-pointer transition-shadow duration-200]
+  bg-white rounded-lg shadow-sm overflow-hidden
+  flex flex-col h-full transition-shadow duration-200 hover:shadow-md
+  [interactive: cursor-pointer]
 
-  ├── <header> flex items-start justify-between gap-space-sm
-  │     ├── <div> flex flex-col gap-space-sm
-  │     │     ├── <h3> text-h3 text-neutral-900
-  │     │     └── <span> text-small text-neutral-400  ← brand (optional)
-  │     └── <div> flex flex-col items-end gap-space-xs shrink-0
-  │           ├── <SafetyBadge rating={safetyRating} />
-  │           └── <span> text-micro text-neutral-400  ← score (optional)
+  ├── <ProductImage> aspect-[4/3] bg-neutral-100
+  │     imageUrl ? <img object-cover loading="lazy" />
+  │              : <Package size={48} text-neutral-400 /> (placeholder)
   │
-  ├── <CategoryTag label={category} />
-  │
-  ├── <p> text-body text-neutral-600
-  │
-  └── [onSave] <div> mt-auto pt-space-md flex justify-end
-        └── <Button variant="secondary"|"ghost" />  ← right-aligned
+  └── <div> p-space-xl flex flex-col gap-space-md flex-1
+        ├── <header> flex items-start justify-between gap-space-sm
+        │     ├── <div> flex flex-col gap-space-sm min-w-0
+        │     │     ├── <h3> text-h3 text-neutral-900
+        │     │     └── <span> text-small text-neutral-400  ← brand (optional)
+        │     └── <div> flex flex-col items-end gap-space-xs shrink-0
+        │           ├── <SafetyBadge rating={safetyRating} />
+        │           └── <span> text-micro text-neutral-400  ← score (optional)
+        │
+        ├── <CategoryTag label={category} />
+        ├── <p> text-body text-neutral-600  ← description
+        │
+        ├── <div> text-micro text-neutral-400 uppercase tracking-wide mt-auto  ← retailer (optional)
+        │
+        └── <Button variant="secondary"|"ghost" />  ← right-aligned save action
 ```
 
 ### States
@@ -76,7 +83,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | Hover (interactive only) | `hover:shadow-md` |
 | Save default | Secondary Button, label "Save to List" |
 | Save active | Ghost Button, label "✓ Saved" |
-| Loading | Replace content with skeleton bars: `bg-neutral-200 rounded-md animate-pulse` |
+| Loading | Image skeleton block (`bg-neutral-200 animate-pulse` at 4:3) + body skeleton bars |
 
 ### Usage Rules
 - **Use** when displaying a product in any list, grid, or search result.
