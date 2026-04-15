@@ -367,7 +367,7 @@ Icon-only padding uses `p-space-xs / p-space-sm / p-space-md` to keep it square.
 
 ## 7. InputField
 
-> **Not yet built.** Specced for Phase 6 (Library & data-entry forms). Do not create this component until the library page is being built.
+**File:** `src/components/InputField.tsx`
 
 **Purpose:** A labeled, accessible text input with optional helper text and error state for all form data-entry contexts.
 
@@ -611,6 +611,46 @@ dismiss(id);                          // manual dismiss
 - Use `duration: 0` only for errors that require user acknowledgement.
 - **Do not use** toasts for loading states — use Spinner or skeleton instead.
 - **Do not stack** more than 3 toasts simultaneously.
+
+---
+
+## 13. Modal
+
+**File:** `src/components/Modal.tsx`
+
+**Purpose:** A generic overlay dialog that traps focus and dismisses on Escape or backdrop click. Used as the shell for AuthModal and any future dialogs.
+
+**Used in:** AuthModal, any future dialog surface.
+
+### Props
+| Prop | Type | Required | Notes |
+|---|---|---|---|
+| `isOpen` | `boolean` | ✅ | Controls visibility |
+| `onClose` | `() => void` | ✅ | Called on Escape or backdrop click |
+| `children` | `ReactNode` | ✅ | Modal body content |
+
+### Visual Structure
+```
+// Backdrop
+<div> fixed inset-0 bg-neutral-900/50 z-50
+      flex items-center justify-center px-space-md
+      [click → onClose]
+
+  // Panel
+  <div> bg-white rounded-md shadow-lg w-full max-w-md relative
+        [click → stopPropagation]
+
+    // Close button — top-right
+    <Button variant="ghost" iconOnly icon={<X />} label="Close" />
+
+    {children}
+```
+
+### Usage Rules
+- **Use** as the shell for any overlay dialog.
+- **Do not** put a title or header inside Modal itself — each consumer owns its own heading.
+- Dismisses on Escape key or backdrop click. The close button is always rendered top-right.
+- Never render two Modals simultaneously.
 
 ---
 

@@ -1,7 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MagnifyingGlass, Rows, BookmarkSimple, ShoppingCart } from '@phosphor-icons/react';
+import { useAuth } from '../lib/auth-context';
+import { supabase } from '../lib/supabase';
+import Button from './Button';
 
-// ─── Nav Items (V1) ───────────────────────────────────────────────────────────
+// ─── Nav Items ────────────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
   { label: 'Search',        route: '/search',   icon: MagnifyingGlass },
@@ -14,6 +17,12 @@ const NAV_ITEMS = [
 
 const NavBar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { session } = useAuth();
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+  }
 
   return (
     <nav className="bg-neutral-50 border-b border-neutral-200 px-space-2xl py-space-md flex items-center justify-between">
@@ -45,6 +54,23 @@ const NavBar = () => {
           );
         })}
       </ul>
+
+      {/* ── Auth ── */}
+      {session ? (
+        <Button
+          label="Log out"
+          variant="ghost"
+          size="sm"
+          onClick={handleSignOut}
+        />
+      ) : (
+        <Button
+          label="Log in"
+          variant="secondary"
+          size="sm"
+          onClick={() => navigate('/login')}
+        />
+      )}
     </nav>
   );
 };
