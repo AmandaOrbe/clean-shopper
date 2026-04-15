@@ -68,7 +68,7 @@ const Toast: FC<ToastProps> = ({
         'flex items-start gap-space-sm',
         'px-space-md py-space-sm rounded-lg shadow-md',
         'min-w-[280px] max-w-sm',
-        'animate-in fade-in slide-in-from-bottom-2 duration-200',
+        'animate-toast-in',
       ].join(' ')}
     >
       <span className={['shrink-0 mt-0.5', iconClass].join(' ')}>

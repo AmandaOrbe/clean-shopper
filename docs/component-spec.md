@@ -50,11 +50,11 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 ```
 <article>
   bg-white rounded-lg shadow-sm
-  p-space-lg flex flex-col gap-space-sm
+  p-space-xl flex flex-col gap-space-md
   [interactive: cursor-pointer transition-shadow duration-200]
 
   ├── <header> flex items-start justify-between gap-space-sm
-  │     ├── <div> flex flex-col gap-space-xs
+  │     ├── <div> flex flex-col gap-space-sm
   │     │     ├── <h3> text-h3 text-neutral-900
   │     │     └── <span> text-small text-neutral-400  ← brand (optional)
   │     └── <div> flex flex-col items-end gap-space-xs shrink-0
@@ -65,8 +65,8 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
   │
   ├── <p> text-body text-neutral-600
   │
-  └── [onSave] <div> pt-space-xs
-        └── <Button variant="secondary"|"ghost" />  ← text+padding wide, left-aligned
+  └── [onSave] <div> mt-auto pt-space-md flex justify-end
+        └── <Button variant="secondary"|"ghost" />  ← right-aligned
 ```
 
 ### States
@@ -81,7 +81,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 ### Usage Rules
 - **Use** when displaying a product in any list, grid, or search result.
 - **Do not use** for a full product detail view — ProductCard is always a summary.
-- The save button is sized to text + padding (not full width) and always left-aligned.
+- The save button is sized to text + padding (not full width) and right-aligned within the card.
 - One SafetyBadge per card. Never render two ratings on the same card.
 
 ---
@@ -249,11 +249,15 @@ None. NavBar uses `useLocation()` internally to determine the active route — n
   └── <ul> flex items-center gap-space-xl list-none
 
         └── <li> per nav item
-              <a>
+              <Link>
+                inline-flex items-center gap-space-xs
                 text-body transition-colors duration-150
 
                 Default:  text-neutral-600 hover:text-neutral-900
                 Active:   text-primary font-semibold
+
+                ├── <Icon size={16} weight="bold"|"regular" />  ← Phosphor icon, bold when active
+                └── label text
 ```
 
 ### Nav Items (V1)
@@ -362,6 +366,8 @@ Icon-only padding uses `p-space-xs / p-space-sm / p-space-md` to keep it square.
 ---
 
 ## 7. InputField
+
+> **Not yet built.** Specced for Phase 6 (Library & data-entry forms). Do not create this component until the library page is being built.
 
 **Purpose:** A labeled, accessible text input with optional helper text and error state for all form data-entry contexts.
 
