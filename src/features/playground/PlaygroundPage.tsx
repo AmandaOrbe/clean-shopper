@@ -272,6 +272,32 @@ const PlaygroundPage = () => {
             />
           </div>
         </Row>
+        <Row label="With image + retailer">
+          <div className="w-80">
+            <ProductCard
+              name="Everyone 3-in-1 Soap"
+              brand="Everyone"
+              safetyRating="clean"
+              safetyScore={94}
+              category="Body Wash"
+              description="Plant-based 3-in-1 soap with coconut cleanser and lemon essential oil."
+              imageUrl="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80"
+              retailer="Target"
+              onSave={() => {}}
+            />
+          </div>
+          <div className="w-80">
+            <ProductCard
+              name="Placeholder Example"
+              brand="No Image Brand"
+              safetyRating="caution"
+              safetyScore={62}
+              category="Dish Soap"
+              description="Card rendered without an image URL — should show the Package icon placeholder tile."
+              onSave={() => {}}
+            />
+          </div>
+        </Row>
       </Section>
 
       {/* ── EmptyState ── */}

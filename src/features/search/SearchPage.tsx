@@ -15,6 +15,8 @@ interface Product {
   safety_score: number;
   category: string;
   description: string;
+  image_url: string | null;
+  retailer: string | null;
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -113,6 +115,8 @@ const SearchPage = () => {
                 safetyScore={product.safety_score}
                 category={product.category}
                 description={product.description}
+                imageUrl={product.image_url ?? undefined}
+                retailer={product.retailer ?? undefined}
                 onSave={() => toggleSave(product.id)}
                 isSaved={saved.has(product.id)}
               />
