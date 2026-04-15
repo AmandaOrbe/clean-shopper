@@ -45,21 +45,21 @@
 
   --text-h3: 20px;
   --text-h3--line-height: 1.35;
-  --text-h3--font-weight: 600;
+  --text-h3--font-weight: 700;
 
   --text-h4: 16px;
   --text-h4--line-height: 1.4;
-  --text-h4--font-weight: 600;
+  --text-h4--font-weight: 700;
 
-  --text-body: 16px;
+  --text-body: 14px;
   --text-body--line-height: 1.6;
   --text-body--font-weight: 400;
 
-  --text-small: 14px;
+  --text-small: 12px;
   --text-small--line-height: 1.5;
   --text-small--font-weight: 400;
 
-  --text-micro: 12px;
+  --text-micro: 11px;
   --text-micro--line-height: 1.4;
   --text-micro--font-weight: 400;
 
@@ -74,9 +74,9 @@
   --spacing-space-4xl: 96px;
 
   /* ─── Border Radius ──────────────────────────────────────── */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   16px;
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   32px;
   --radius-full: 9999px;
 
   /* ─── Shadows ────────────────────────────────────────────── */

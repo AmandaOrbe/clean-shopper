@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clean Shopper — Design System v2.0</title>
+  <title>Clean Shopper — Design System v2.2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,251 +12,101 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #FFFFFF;
+      background: #F5F5F0;
       color: #121210;
       padding: 64px 48px;
       max-width: 960px;
       margin: 0 auto;
     }
 
-    /* ── Header ── */
     .page-header {
       border-bottom: 3px solid #1B3829;
       padding-bottom: 32px;
       margin-bottom: 64px;
     }
     .page-header h1 {
-      font-size: 56px;
-      font-weight: 800;
-      line-height: 1.05;
-      color: #1B3829;
-      letter-spacing: -1.5px;
+      font-size: 56px; font-weight: 800; line-height: 1.05;
+      color: #1B3829; letter-spacing: -1.5px;
     }
-    .page-header p {
-      font-size: 16px;
-      color: #464640;
-      margin-top: 12px;
-    }
+    .page-header p { font-size: 14px; color: #464640; margin-top: 12px; }
     .version-badge {
-      display: inline-block;
-      background: #D4F53C;
-      color: #1B3829;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      display: inline-block; background: #D4F53C; color: #1B3829;
+      font-size: 12px; font-weight: 700; padding: 4px 10px;
+      border-radius: 9999px; margin-bottom: 16px;
+      letter-spacing: 0.5px; text-transform: uppercase;
     }
 
-    /* ── Section ── */
-    .section {
-      margin-bottom: 80px;
-    }
+    .section { margin-bottom: 80px; }
     .section-title {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #98988E;
-      margin-bottom: 32px;
-      padding-bottom: 12px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #98988E;
+      margin-bottom: 32px; padding-bottom: 12px;
       border-bottom: 1px solid #E2E2DA;
     }
 
-    /* ── Color Swatches ── */
-    .swatch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .swatch-group-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #98988E;
-      margin: 28px 0 12px;
-    }
-    .swatch {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-    .swatch-color {
-      height: 80px;
-      width: 100%;
-    }
-    .swatch-info {
-      padding: 10px 12px;
-      background: #F5F5F0;
-    }
-    .swatch-name {
-      font-size: 12px;
-      font-weight: 700;
-      color: #121210;
-      display: block;
-    }
-    .swatch-hex {
-      font-size: 11px;
-      color: #464640;
-      font-family: 'Courier New', monospace;
-      display: block;
-      margin-top: 2px;
-    }
-    .swatch-usage {
-      font-size: 10px;
-      color: #98988E;
-      display: block;
-      margin-top: 4px;
-      line-height: 1.4;
-    }
+    /* Swatches */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .swatch-group-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #98988E; margin: 28px 0 12px; }
+    .swatch { border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); }
+    .swatch-color { height: 80px; width: 100%; }
+    .swatch-info { padding: 10px 12px; background: #FFFFFF; }
+    .swatch-name { font-size: 12px; font-weight: 700; color: #121210; display: block; }
+    .swatch-hex { font-size: 11px; color: #464640; font-family: 'Courier New', monospace; display: block; margin-top: 2px; }
+    .swatch-usage { font-size: 10px; color: #98988E; display: block; margin-top: 4px; line-height: 1.4; }
 
-    /* ── Typography ── */
-    .type-row {
-      display: flex;
-      align-items: baseline;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid #E2E2DA;
-    }
-    .type-meta {
-      width: 140px;
-      flex-shrink: 0;
-    }
+    /* Typography */
+    .type-row { display: flex; align-items: baseline; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E2E2DA; }
+    .type-meta { width: 140px; flex-shrink: 0; }
     .type-token {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #D4F53C;
-      background: #1B3829;
-      padding: 2px 8px;
-      border-radius: 4px;
-      display: inline-block;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      color: #D4F53C; background: #1B3829; padding: 2px 8px;
+      border-radius: 9999px; display: inline-block;
     }
-    .type-details {
-      font-size: 10px;
-      color: #98988E;
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-    .type-sample {
-      flex: 1;
-      color: #121210;
-    }
+    .type-details { font-size: 10px; color: #98988E; margin-top: 6px; line-height: 1.5; }
+    .type-sample { flex: 1; color: #121210; }
 
-    /* ── Spacing ── */
-    .spacing-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 12px 0;
-      border-bottom: 1px solid #E2E2DA;
-    }
-    .spacing-meta {
-      width: 100px;
-      flex-shrink: 0;
-    }
-    .spacing-token {
-      font-size: 11px;
-      font-weight: 700;
-      color: #121210;
-    }
-    .spacing-value {
-      font-size: 11px;
-      color: #98988E;
-      font-family: 'Courier New', monospace;
-    }
-    .spacing-bar-wrap {
-      flex: 1;
-    }
-    .spacing-bar {
-      height: 24px;
-      background: #1B3829;
-      border-radius: 4px;
-    }
+    /* Spacing */
+    .spacing-row { display: flex; align-items: center; gap: 24px; padding: 12px 0; border-bottom: 1px solid #E2E2DA; }
+    .spacing-meta { width: 100px; flex-shrink: 0; }
+    .spacing-token { font-size: 11px; font-weight: 700; color: #121210; }
+    .spacing-value { font-size: 11px; color: #98988E; font-family: 'Courier New', monospace; }
+    .spacing-bar-wrap { flex: 1; }
+    .spacing-bar { height: 24px; background: #1B3829; border-radius: 9999px; }
 
-    /* ── Radius ── */
-    .radius-grid {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .radius-item {
-      text-align: center;
-    }
-    .radius-box {
-      width: 96px;
-      height: 96px;
-      background: #1B3829;
-    }
-    .radius-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: #121210;
-      margin-top: 10px;
-      display: block;
-    }
-    .radius-val {
-      font-size: 10px;
-      color: #98988E;
-      font-family: 'Courier New', monospace;
-      display: block;
-      margin-top: 2px;
-    }
+    /* Radius */
+    .radius-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .radius-item { text-align: center; }
+    .radius-box { width: 96px; height: 96px; background: #1B3829; }
+    .radius-label { font-size: 11px; font-weight: 700; color: #121210; margin-top: 10px; display: block; }
+    .radius-val { font-size: 10px; color: #98988E; font-family: 'Courier New', monospace; display: block; margin-top: 2px; }
 
-    /* ── Shadows ── */
-    .shadow-grid {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .shadow-item {
-      text-align: center;
-    }
-    .shadow-box {
-      width: 120px;
-      height: 80px;
-      background: #FFFFFF;
-      border-radius: 8px;
-      border: 1px solid #E2E2DA;
-    }
+    /* Shadows */
+    .shadow-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+    .shadow-item { text-align: center; }
+    .shadow-box { width: 120px; height: 80px; background: #FFFFFF; border-radius: 16px; }
     .shadow-sm-box { box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
     .shadow-md-box { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
     .shadow-lg-box { box-shadow: 0 12px 40px rgba(0,0,0,0.16); }
-    .shadow-label {
-      font-size: 11px;
-      font-weight: 700;
-      color: #121210;
-      margin-top: 16px;
-      display: block;
-    }
+    .shadow-label { font-size: 11px; font-weight: 700; color: #121210; margin-top: 16px; display: block; }
 
-    /* ── Palette strip ── */
-    .palette-strip {
-      display: flex;
-      height: 48px;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 48px;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
+    /* Palette strip */
+    .palette-strip { display: flex; height: 48px; border-radius: 16px; overflow: hidden; margin-bottom: 48px; border: 1px solid rgba(0,0,0,0.06); }
     .palette-strip div { flex: 1; }
+
+    /* Component preview helpers */
+    .preview-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #98988E; margin-bottom: 16px; }
+    .preview-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 32px; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header class="page-header">
-    <div class="version-badge">Version 2.0 — 2026-04-11</div>
+    <div class="version-badge">Version 2.2 — 2026-04-15</div>
     <h1>Clean Shopper</h1>
     <p>Design System · Plus Jakarta Sans · High Contrast · California Modern</p>
   </header>
 
-  <!-- Palette Strip -->
+  <!-- Palette strip -->
   <div class="palette-strip">
     <div style="background:#0F2119;"></div>
     <div style="background:#1B3829;"></div>
@@ -265,7 +115,7 @@
     <div style="background:#BADA2C;"></div>
     <div style="background:#F47820;"></div>
     <div style="background:#D4650F;"></div>
-    <div style="background:#FFFFFF; border-left: 1px solid #E2E2DA;"></div>
+    <div style="background:#FFFFFF; border-left:1px solid #E2E2DA;"></div>
     <div style="background:#F5F5F0;"></div>
     <div style="background:#E2E2DA;"></div>
     <div style="background:#98988E;"></div>
@@ -273,160 +123,47 @@
     <div style="background:#121210;"></div>
   </div>
 
-  <!-- ── COLORS ── -->
+  <!-- COLORS -->
   <section class="section">
     <div class="section-title">Color System</div>
 
     <div class="swatch-group-label">Primary</div>
     <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#1B3829;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">primary</span>
-          <span class="swatch-hex">#1B3829</span>
-          <span class="swatch-usage">Buttons, active nav, key CTAs</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#2D5A3E;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">primary-light</span>
-          <span class="swatch-hex">#2D5A3E</span>
-          <span class="swatch-usage">Hover states, selected chips</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#0F2119;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">primary-dark</span>
-          <span class="swatch-hex">#0F2119</span>
-          <span class="swatch-usage">Pressed states, focus rings</span>
-        </div>
-      </div>
+      <div class="swatch"><div class="swatch-color" style="background:#1B3829;"></div><div class="swatch-info"><span class="swatch-name">primary</span><span class="swatch-hex">#1B3829</span><span class="swatch-usage">Buttons, active nav, key CTAs</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#2D5A3E;"></div><div class="swatch-info"><span class="swatch-name">primary-light</span><span class="swatch-hex">#2D5A3E</span><span class="swatch-usage">Hover states, selected chips</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#0F2119;"></div><div class="swatch-info"><span class="swatch-name">primary-dark</span><span class="swatch-hex">#0F2119</span><span class="swatch-usage">Pressed states, focus rings</span></div></div>
     </div>
 
     <div class="swatch-group-label">Accent</div>
     <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#D4F53C;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">accent</span>
-          <span class="swatch-hex">#D4F53C</span>
-          <span class="swatch-usage">Highlight moments, callouts, dark-context accents. Not for text on white.</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#BADA2C;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">accent-dark</span>
-          <span class="swatch-hex">#BADA2C</span>
-          <span class="swatch-usage">Hover state for accent elements</span>
-        </div>
-      </div>
+      <div class="swatch"><div class="swatch-color" style="background:#D4F53C;"></div><div class="swatch-info"><span class="swatch-name">accent</span><span class="swatch-hex">#D4F53C</span><span class="swatch-usage">Callouts, dark-context accents. Not for text on white.</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#BADA2C;"></div><div class="swatch-info"><span class="swatch-name">accent-dark</span><span class="swatch-hex">#BADA2C</span><span class="swatch-usage">Hover on accent elements</span></div></div>
     </div>
 
     <div class="swatch-group-label">Secondary</div>
     <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#F47820;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">secondary</span>
-          <span class="swatch-hex">#F47820</span>
-          <span class="swatch-usage">Warm emphasis, highlights, secondary badges</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#D4650F;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">secondary-dark</span>
-          <span class="swatch-hex">#D4650F</span>
-          <span class="swatch-usage">Hover state for secondary elements</span>
-        </div>
-      </div>
+      <div class="swatch"><div class="swatch-color" style="background:#F47820;"></div><div class="swatch-info"><span class="swatch-name">secondary</span><span class="swatch-hex">#F47820</span><span class="swatch-usage">Warm emphasis, highlights</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#D4650F;"></div><div class="swatch-info"><span class="swatch-name">secondary-dark</span><span class="swatch-hex">#D4650F</span><span class="swatch-usage">Hover on secondary elements</span></div></div>
     </div>
 
-    <div class="swatch-group-label">Semantic</div>
+    <div class="swatch-group-label">Semantic — Safety Ratings Only</div>
     <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#16A34A;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">success</span>
-          <span class="swatch-hex">#16A34A</span>
-          <span class="swatch-usage">Clean ratings, confirmed saves</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#D97706;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">warning</span>
-          <span class="swatch-hex">#D97706</span>
-          <span class="swatch-usage">Caution ratings, partial alerts</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#DC2626;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">error</span>
-          <span class="swatch-hex">#DC2626</span>
-          <span class="swatch-usage">Error states, avoid ratings</span>
-        </div>
-      </div>
+      <div class="swatch"><div class="swatch-color" style="background:#16A34A;"></div><div class="swatch-info"><span class="swatch-name">success</span><span class="swatch-hex">#16A34A</span><span class="swatch-usage">Clean ratings only</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#D97706;"></div><div class="swatch-info"><span class="swatch-name">warning</span><span class="swatch-hex">#D97706</span><span class="swatch-usage">Caution ratings only</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#DC2626;"></div><div class="swatch-info"><span class="swatch-name">error</span><span class="swatch-hex">#DC2626</span><span class="swatch-usage">Avoid ratings, errors only</span></div></div>
     </div>
 
     <div class="swatch-group-label">Neutrals</div>
     <div class="swatch-grid">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#FFFFFF; border-bottom: 1px solid #E2E2DA;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-50</span>
-          <span class="swatch-hex">#FFFFFF</span>
-          <span class="swatch-usage">Page background — dominant surface</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#F5F5F0;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-100</span>
-          <span class="swatch-hex">#F5F5F0</span>
-          <span class="swatch-usage">Cards, modals, input fills</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#E2E2DA;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-200</span>
-          <span class="swatch-hex">#E2E2DA</span>
-          <span class="swatch-usage">Borders, dividers, skeletons</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#98988E;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-400</span>
-          <span class="swatch-hex">#98988E</span>
-          <span class="swatch-usage">Placeholders, disabled states</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#464640;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-600</span>
-          <span class="swatch-hex">#464640</span>
-          <span class="swatch-usage">Secondary text, metadata</span>
-        </div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#121210;"></div>
-        <div class="swatch-info">
-          <span class="swatch-name">neutral-900</span>
-          <span class="swatch-hex">#121210</span>
-          <span class="swatch-usage">Primary text, headings</span>
-        </div>
-      </div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E2E2DA;"></div><div class="swatch-info"><span class="swatch-name">neutral-50</span><span class="swatch-hex">#FFFFFF</span><span class="swatch-usage">Cards, nav background</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F5F5F0;"></div><div class="swatch-info"><span class="swatch-name">neutral-100</span><span class="swatch-hex">#F5F5F0</span><span class="swatch-usage">Page background</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#E2E2DA;"></div><div class="swatch-info"><span class="swatch-name">neutral-200</span><span class="swatch-hex">#E2E2DA</span><span class="swatch-usage">Borders, dividers, skeletons</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#98988E;"></div><div class="swatch-info"><span class="swatch-name">neutral-400</span><span class="swatch-hex">#98988E</span><span class="swatch-usage">Placeholders, disabled</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#464640;"></div><div class="swatch-info"><span class="swatch-name">neutral-600</span><span class="swatch-hex">#464640</span><span class="swatch-usage">Body text, metadata</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#121210;"></div><div class="swatch-info"><span class="swatch-name">neutral-900</span><span class="swatch-hex">#121210</span><span class="swatch-usage">Headings, primary text</span></div></div>
     </div>
 
-    <!-- Contrast demo -->
-    <div style="margin-top:32px; border-radius:12px; overflow:hidden; border:1px solid #E2E2DA;">
+    <div style="margin-top:32px; border-radius:16px; overflow:hidden; border:1px solid #E2E2DA;">
       <div style="background:#1B3829; padding:28px 32px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
         <span style="font-size:22px; font-weight:700; color:#FFFFFF;">White on Primary</span>
         <span style="font-size:22px; font-weight:700; color:#D4F53C;">Accent on Primary</span>
@@ -440,217 +177,222 @@
     </div>
   </section>
 
-  <!-- ── TYPOGRAPHY ── -->
+  <!-- TYPOGRAPHY -->
   <section class="section">
     <div class="section-title">Typography · Plus Jakarta Sans</div>
 
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">display</span>
-        <div class="type-details">56px / 800<br>lh 1.05</div>
-      </div>
+      <div class="type-meta"><span class="type-token">display</span><div class="type-details">56px / 800<br>lh 1.05</div></div>
       <div class="type-sample" style="font-size:56px; font-weight:800; line-height:1.05; letter-spacing:-1px;">Clean.</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">h1</span>
-        <div class="type-details">40px / 700<br>lh 1.15</div>
-      </div>
-      <div class="type-sample" style="font-size:40px; font-weight:700; line-height:1.15;">Search Products</div>
+      <div class="type-meta"><span class="type-token">h1</span><div class="type-details">40px / 700<br>lh 1.15</div></div>
+      <div class="type-sample" style="font-size:40px; font-weight:700; line-height:1.15;">Browse Products</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">h2</span>
-        <div class="type-details">28px / 700<br>lh 1.25</div>
-      </div>
+      <div class="type-meta"><span class="type-token">h2</span><div class="type-details">28px / 700<br>lh 1.25</div></div>
       <div class="type-sample" style="font-size:28px; font-weight:700; line-height:1.25;">Your Saved Library</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">h3</span>
-        <div class="type-details">20px / 600<br>lh 1.35</div>
-      </div>
-      <div class="type-sample" style="font-size:20px; font-weight:600; line-height:1.35;">Dr. Bronner's Pure Castile Soap</div>
+      <div class="type-meta"><span class="type-token">h3</span><div class="type-details">20px / 700<br>lh 1.35</div></div>
+      <div class="type-sample" style="font-size:20px; font-weight:700; line-height:1.35;">Dr. Bronner's Pure Castile Soap</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">h4</span>
-        <div class="type-details">16px / 600<br>lh 1.4</div>
-      </div>
-      <div class="type-sample" style="font-size:16px; font-weight:600; line-height:1.4;">Ingredient Category</div>
+      <div class="type-meta"><span class="type-token">h4</span><div class="type-details">16px / 700<br>lh 1.4</div></div>
+      <div class="type-sample" style="font-size:16px; font-weight:700; line-height:1.4;">Ingredient Category</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">body</span>
-        <div class="type-details">16px / 400<br>lh 1.6</div>
-      </div>
-      <div class="type-sample" style="font-size:16px; font-weight:400; line-height:1.6; color:#464640;">Organic, fair trade, no synthetic preservatives or detergents. Assessed as clean based on EWG Skin Deep data.</div>
+      <div class="type-meta"><span class="type-token">body</span><div class="type-details">14px / 400<br>lh 1.6</div></div>
+      <div class="type-sample" style="font-size:14px; font-weight:400; line-height:1.6; color:#464640;">Organic, fair trade, no synthetic preservatives. Assessed as clean based on EWG Skin Deep data.</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">small</span>
-        <div class="type-details">14px / 400<br>lh 1.5</div>
-      </div>
-      <div class="type-sample" style="font-size:14px; font-weight:400; line-height:1.5; color:#464640;">Personal Care · 92/100 · Updated today</div>
+      <div class="type-meta"><span class="type-token">small</span><div class="type-details">12px / 400<br>lh 1.5</div></div>
+      <div class="type-sample" style="font-size:12px; font-weight:400; line-height:1.5; color:#464640;">Personal Care · 92/100 · Updated today</div>
     </div>
-
     <div class="type-row">
-      <div class="type-meta">
-        <span class="type-token">micro</span>
-        <div class="type-details">12px / 400<br>lh 1.4</div>
-      </div>
-      <div class="type-sample" style="font-size:12px; font-weight:400; line-height:1.4; color:#98988E;">Source: EWG Skin Deep · Data as of 2026</div>
+      <div class="type-meta"><span class="type-token">micro</span><div class="type-details">11px / 400<br>lh 1.4</div></div>
+      <div class="type-sample" style="font-size:11px; font-weight:400; line-height:1.4; color:#98988E;">Source: EWG Skin Deep · Data as of 2026</div>
     </div>
   </section>
 
-  <!-- ── SPACING ── -->
+  <!-- SPACING -->
   <section class="section">
     <div class="section-title">Spacing Scale · Base 4px</div>
-
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-xs</div><div class="spacing-value">4px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-sm</div><div class="spacing-value">8px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-md</div><div class="spacing-value">16px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-lg</div><div class="spacing-value">24px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-xl</div><div class="spacing-value">32px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-2xl</div><div class="spacing-value">48px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-3xl</div><div class="spacing-value">64px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px;"></div></div>
-    </div>
-    <div class="spacing-row">
-      <div class="spacing-meta"><div class="spacing-token">space-4xl</div><div class="spacing-value">96px</div></div>
-      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px;"></div></div>
-    </div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-xs</div><div class="spacing-value">4px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-sm</div><div class="spacing-value">8px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-md</div><div class="spacing-value">16px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-lg</div><div class="spacing-value">24px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-xl</div><div class="spacing-value">32px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-2xl</div><div class="spacing-value">48px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-3xl</div><div class="spacing-value">64px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px;"></div></div></div>
+    <div class="spacing-row"><div class="spacing-meta"><div class="spacing-token">space-4xl</div><div class="spacing-value">96px</div></div><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px;"></div></div></div>
   </section>
 
-  <!-- ── BORDER RADIUS ── -->
+  <!-- BORDER RADIUS -->
   <section class="section">
     <div class="section-title">Border Radius</div>
     <div class="radius-grid">
-      <div class="radius-item">
-        <div class="radius-box" style="border-radius:4px;"></div>
-        <span class="radius-label">radius-sm</span>
-        <span class="radius-val">4px · tags, badges</span>
-      </div>
-      <div class="radius-item">
-        <div class="radius-box" style="border-radius:8px;"></div>
-        <span class="radius-label">radius-md</span>
-        <span class="radius-val">8px · inputs, buttons</span>
-      </div>
-      <div class="radius-item">
-        <div class="radius-box" style="border-radius:16px;"></div>
-        <span class="radius-label">radius-lg</span>
-        <span class="radius-val">16px · cards, modals</span>
-      </div>
-      <div class="radius-item">
-        <div class="radius-box" style="border-radius:9999px;"></div>
-        <span class="radius-label">radius-full</span>
-        <span class="radius-val">9999px · pills, avatars</span>
-      </div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><span class="radius-label">radius-sm</span><span class="radius-val">8px · tags, badges</span></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:16px;"></div><span class="radius-label">radius-md</span><span class="radius-val">16px · inputs, buttons</span></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:32px;"></div><span class="radius-label">radius-lg</span><span class="radius-val">32px · cards, modals</span></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><span class="radius-label">radius-full</span><span class="radius-val">9999px · pills, avatars</span></div>
     </div>
   </section>
 
-  <!-- ── SHADOWS ── -->
+  <!-- SHADOWS -->
   <section class="section">
     <div class="section-title">Shadows</div>
     <div class="shadow-grid">
-      <div class="shadow-item">
-        <div class="shadow-box shadow-sm-box"></div>
-        <span class="shadow-label">shadow-sm</span>
-        <span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Resting cards</span>
-      </div>
-      <div class="shadow-item">
-        <div class="shadow-box shadow-md-box"></div>
-        <span class="shadow-label">shadow-md</span>
-        <span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Hover, dropdowns</span>
-      </div>
-      <div class="shadow-item">
-        <div class="shadow-box shadow-lg-box"></div>
-        <span class="shadow-label">shadow-lg</span>
-        <span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Modals, overlays</span>
-      </div>
+      <div class="shadow-item"><div class="shadow-box shadow-sm-box"></div><span class="shadow-label">shadow-sm</span><span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Resting cards</span></div>
+      <div class="shadow-item"><div class="shadow-box shadow-md-box"></div><span class="shadow-label">shadow-md</span><span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Hover, dropdowns</span></div>
+      <div class="shadow-item"><div class="shadow-box shadow-lg-box"></div><span class="shadow-label">shadow-lg</span><span style="font-size:10px; color:#98988E; display:block; margin-top:4px;">Modals, overlays</span></div>
     </div>
   </section>
 
-  <!-- ── COMPONENT PREVIEW ── -->
+  <!-- COMPONENTS -->
   <section class="section">
     <div class="section-title">Component Preview</div>
 
     <!-- Safety Badges -->
-    <div style="margin-bottom:32px;">
-      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#98988E; margin-bottom:16px;">Safety Badges</div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <span style="display:inline-flex; align-items:center; padding:6px 12px; border-radius:9999px; font-size:14px; font-weight:600; background:rgba(22,163,74,0.1); color:#16A34A; border:1px solid rgba(22,163,74,0.2);">Clean</span>
-        <span style="display:inline-flex; align-items:center; padding:6px 12px; border-radius:9999px; font-size:14px; font-weight:600; background:rgba(217,119,6,0.1); color:#D97706; border:1px solid rgba(217,119,6,0.2);">Caution</span>
-        <span style="display:inline-flex; align-items:center; padding:6px 12px; border-radius:9999px; font-size:14px; font-weight:600; background:rgba(220,38,38,0.1); color:#DC2626; border:1px solid rgba(220,38,38,0.2);">Avoid</span>
-        <span style="display:inline-flex; align-items:center; padding:4px 8px; border-radius:9999px; font-size:12px; font-weight:600; background:rgba(22,163,74,0.1); color:#16A34A; border:1px solid rgba(22,163,74,0.2);">Clean sm</span>
-        <span style="display:inline-flex; align-items:center; padding:4px 8px; border-radius:9999px; font-size:12px; font-weight:600; background:rgba(217,119,6,0.1); color:#D97706; border:1px solid rgba(217,119,6,0.2);">Caution sm</span>
-        <span style="display:inline-flex; align-items:center; padding:4px 8px; border-radius:9999px; font-size:12px; font-weight:600; background:rgba(220,38,38,0.1); color:#DC2626; border:1px solid rgba(220,38,38,0.2);">Avoid sm</span>
-      </div>
+    <div class="preview-label">Safety Badges</div>
+    <div class="preview-row">
+      <span style="display:inline-flex;align-items:center;padding:6px 12px;border-radius:9999px;font-size:12px;font-weight:600;background:rgba(22,163,74,0.1);color:#16A34A;border:1px solid rgba(22,163,74,0.2);">Clean</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 12px;border-radius:9999px;font-size:12px;font-weight:600;background:rgba(217,119,6,0.1);color:#D97706;border:1px solid rgba(217,119,6,0.2);">Caution</span>
+      <span style="display:inline-flex;align-items:center;padding:6px 12px;border-radius:9999px;font-size:12px;font-weight:600;background:rgba(220,38,38,0.1);color:#DC2626;border:1px solid rgba(220,38,38,0.2);">Avoid</span>
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:9999px;font-size:11px;font-weight:600;background:rgba(22,163,74,0.1);color:#16A34A;border:1px solid rgba(22,163,74,0.2);">Clean sm</span>
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:9999px;font-size:11px;font-weight:600;background:rgba(217,119,6,0.1);color:#D97706;border:1px solid rgba(217,119,6,0.2);">Caution sm</span>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="preview-label">Filter Pills</div>
+    <div class="preview-row">
+      <span style="display:inline-flex;align-items:center;padding:8px 20px;border-radius:9999px;font-size:12px;font-weight:700;background:#1B3829;color:#FFFFFF;">Home Cleaning</span>
+      <span style="display:inline-flex;align-items:center;padding:8px 20px;border-radius:9999px;font-size:12px;font-weight:500;background:#E2E2DA;color:#464640;">Baby Care</span>
+      <span style="display:inline-flex;align-items:center;padding:8px 20px;border-radius:9999px;font-size:12px;font-weight:500;background:#E2E2DA;color:#464640;">Kitchen</span>
+      <span style="display:inline-flex;align-items:center;padding:8px 20px;border-radius:9999px;font-size:12px;font-weight:500;background:#E2E2DA;color:#464640;">Personal Care</span>
     </div>
 
     <!-- Category Tags -->
-    <div style="margin-bottom:32px;">
-      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#98988E; margin-bottom:16px;">Category Tags</div>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <span style="display:inline-flex; align-items:center; width:fit-content; padding:4px 8px; border-radius:4px; font-size:14px; background:#E2E2DA; color:#464640;">Personal Care</span>
-        <span style="display:inline-flex; align-items:center; width:fit-content; padding:4px 8px; border-radius:4px; font-size:14px; background:#E2E2DA; color:#464640;">Moisturizer</span>
-        <span style="display:inline-flex; align-items:center; width:fit-content; padding:4px 8px; border-radius:4px; font-size:14px; background:#1B3829; color:#FFFFFF;">Cleaning</span>
-        <span style="display:inline-flex; align-items:center; width:fit-content; padding:4px 8px; border-radius:4px; font-size:14px; background:#1B3829; color:#FFFFFF;">Sunscreen</span>
-      </div>
+    <div class="preview-label">Category Tags</div>
+    <div class="preview-row">
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;font-size:12px;background:#E2E2DA;color:#464640;">Personal Care</span>
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;font-size:12px;background:#E2E2DA;color:#464640;">Home Cleaning</span>
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;font-size:12px;background:#1B3829;color:#FFFFFF;">Baby Care (active)</span>
     </div>
 
     <!-- Buttons -->
-    <div style="margin-bottom:32px;">
-      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#98988E; margin-bottom:16px;">Buttons</div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <button style="background:#1B3829; color:#FFFFFF; border:none; padding:10px 24px; border-radius:8px; font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:600; cursor:pointer;">Search</button>
-        <button style="background:transparent; color:#1B3829; border:2px solid #1B3829; padding:10px 24px; border-radius:8px; font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; font-weight:600; cursor:pointer;">Save</button>
-        <button style="background:transparent; color:#464640; border:none; padding:10px 16px; border-radius:8px; font-family:'Plus Jakarta Sans',sans-serif; font-size:16px; cursor:pointer;">Cancel</button>
+    <div class="preview-label">Buttons — rounded, icon support</div>
+    <div class="preview-row">
+      <button style="background:#1B3829;color:#FFFFFF;border:none;padding:8px 32px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Primary</button>
+      <button style="background:transparent;color:#1B3829;border:2px solid #1B3829;padding:8px 32px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Secondary</button>
+      <button style="background:transparent;color:#464640;border:none;padding:8px 16px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;cursor:pointer;">Ghost</button>
+      <button style="background:#1B3829;color:#FFFFFF;border:none;padding:6px 20px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;">Small</button>
+      <button style="background:#1B3829;color:#FFFFFF;border:none;padding:12px 48px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Large</button>
+    </div>
+
+    <!-- SearchBar -->
+    <div class="preview-label">Search Bar</div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;max-width:480px;">
+      <!-- Default -->
+      <form style="display:flex;gap:8px;">
+        <input type="text" placeholder="Search for a product…" style="flex:1;background:#F5F5F0;border:1px solid #E2E2DA;border-radius:16px;padding:8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#121210;" />
+        <button style="background:#1B3829;color:#FFFFFF;border:none;padding:8px 24px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Search</button>
+      </form>
+      <!-- Loading -->
+      <form style="display:flex;gap:8px;opacity:0.75;">
+        <input type="text" value="Dove body wash" disabled style="flex:1;background:#F5F5F0;border:1px solid #E2E2DA;border-radius:16px;padding:8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#121210;cursor:not-allowed;" />
+        <button disabled style="background:#98988E;color:#FFFFFF;border:none;padding:8px 24px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:not-allowed;">Loading…</button>
+      </form>
+    </div>
+
+    <!-- Toast -->
+    <div class="preview-label">Toast Notifications</div>
+    <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:32px; max-width:360px;">
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#FFFFFF;border:1px solid rgba(22,163,74,0.2);border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+        <span style="color:#16A34A;margin-top:1px;">✓</span>
+        <span style="font-size:12px;color:#121210;flex:1;">Product saved to your library!</span>
+        <span style="color:#98988E;font-size:12px;cursor:pointer;">✕</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#FFFFFF;border:1px solid rgba(220,38,38,0.2);border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+        <span style="color:#DC2626;margin-top:1px;">✕</span>
+        <span style="font-size:12px;color:#121210;flex:1;">Something went wrong. Please try again.</span>
+        <span style="color:#98988E;font-size:12px;cursor:pointer;">✕</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#FFFFFF;border:1px solid rgba(217,119,6,0.2);border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+        <span style="color:#D97706;margin-top:1px;">⚠</span>
+        <span style="font-size:12px;color:#121210;flex:1;">This product has moderate concern ingredients.</span>
+        <span style="color:#98988E;font-size:12px;cursor:pointer;">✕</span>
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div class="preview-label">Spinner — Sizes</div>
+    <div class="preview-row" style="align-items:center;">
+      <!-- sm: 16x16 -->
+      <div style="width:16px;height:16px;border-radius:9999px;border:2px solid #E2E2DA;border-top-color:#1B3829;"></div>
+      <!-- md: 24x24 -->
+      <div style="width:24px;height:24px;border-radius:9999px;border:2px solid #E2E2DA;border-top-color:#1B3829;"></div>
+      <!-- lg: 40x40 -->
+      <div style="width:40px;height:40px;border-radius:9999px;border:3px solid #E2E2DA;border-top-color:#1B3829;"></div>
+      <span style="font-size:11px;color:#98988E;margin-left:8px;">sm · md · lg (static preview — animates in app)</span>
+    </div>
+
+    <!-- Select -->
+    <div class="preview-label">Select / Dropdown</div>
+    <div class="preview-row" style="flex-direction:column;align-items:flex-start;gap:16px;">
+      <!-- Without label -->
+      <div style="position:relative;display:inline-flex;align-items:center;">
+        <select style="appearance:none;background:#F5F5F0;border:1px solid #E2E2DA;border-radius:16px;padding:8px 40px 8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#121210;cursor:pointer;min-width:200px;">
+          <option>Sort by…</option>
+          <option>Safety score: high to low</option>
+          <option>Name: A → Z</option>
+        </select>
+        <span style="position:absolute;right:12px;pointer-events:none;color:#98988E;font-size:12px;">▾</span>
+      </div>
+      <!-- With label -->
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:16px;font-weight:700;color:#121210;">Filter by rating</label>
+        <div style="position:relative;display:inline-flex;align-items:center;">
+          <select style="appearance:none;background:#F5F5F0;border:1px solid #E2E2DA;border-radius:16px;padding:8px 40px 8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#121210;cursor:pointer;min-width:200px;">
+            <option>All ratings</option>
+            <option>Clean only</option>
+            <option>Caution</option>
+          </select>
+          <span style="position:absolute;right:12px;pointer-events:none;color:#98988E;font-size:12px;">▾</span>
+        </div>
+      </div>
+      <!-- Disabled -->
+      <div style="position:relative;display:inline-flex;align-items:center;opacity:0.5;">
+        <select disabled style="appearance:none;background:#F5F5F0;border:1px solid #E2E2DA;border-radius:16px;padding:8px 40px 8px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#121210;cursor:not-allowed;min-width:200px;">
+          <option>Unavailable</option>
+        </select>
+        <span style="position:absolute;right:12px;pointer-events:none;color:#98988E;font-size:12px;">▾</span>
       </div>
     </div>
 
     <!-- Product Card -->
-    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#98988E; margin-bottom:16px;">Product Card</div>
-    <div style="background:#FFFFFF; border:1px solid #E2E2DA; border-radius:16px; padding:24px; box-shadow:0 1px 4px rgba(0,0,0,0.08); max-width:480px;">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:12px;">
-        <span style="font-size:20px; font-weight:600; color:#121210; line-height:1.35;">Dr. Bronner's Pure Castile Soap</span>
-        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0;">
-          <span style="display:inline-flex; align-items:center; padding:6px 12px; border-radius:9999px; font-size:14px; font-weight:600; background:rgba(22,163,74,0.1); color:#16A34A; border:1px solid rgba(22,163,74,0.2);">Clean</span>
-          <span style="font-size:12px; color:#98988E;">92/100</span>
+    <div class="preview-label">Product Card</div>
+    <div style="background:#FFFFFF;border-radius:32px;padding:32px;box-shadow:0 1px 4px rgba(0,0,0,0.08);max-width:480px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px;">
+        <div>
+          <div style="font-size:20px;font-weight:700;color:#121210;line-height:1.35;margin-bottom:8px;">Dr. Bronner's Pure Castile Soap</div>
+          <div style="font-size:12px;color:#98988E;">Dr. Bronner's</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+          <span style="display:inline-flex;align-items:center;padding:6px 12px;border-radius:9999px;font-size:12px;font-weight:600;background:rgba(22,163,74,0.1);color:#16A34A;border:1px solid rgba(22,163,74,0.2);">Clean</span>
+          <span style="font-size:11px;color:#98988E;">92/100</span>
         </div>
       </div>
-      <span style="display:inline-flex; align-items:center; width:fit-content; padding:4px 8px; border-radius:4px; font-size:14px; background:#E2E2DA; color:#464640; margin-bottom:12px;">Personal Care</span>
-      <p style="font-size:16px; color:#464640; line-height:1.6;">Organic, fair trade, no synthetic preservatives or detergents.</p>
+      <span style="display:inline-flex;align-items:center;padding:4px 8px;border-radius:8px;font-size:12px;background:#E2E2DA;color:#464640;margin-bottom:16px;">Personal Care</span>
+      <p style="font-size:14px;color:#464640;line-height:1.6;margin-bottom:32px;">Organic, fair trade, no synthetic preservatives or detergents. Safe for the whole family.</p>
+      <div style="display:flex;justify-content:flex-end;">
+        <button style="background:transparent;color:#1B3829;border:2px solid #1B3829;padding:8px 32px;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Save to List</button>
+      </div>
     </div>
   </section>
 
-  <footer style="border-top:1px solid #E2E2DA; padding-top:32px; margin-top:32px; font-size:12px; color:#98988E;">
-    Clean Shopper Design System v2.0 · Generated 2026-04-11 · Plus Jakarta Sans via Google Fonts
+  <footer style="border-top:1px solid #E2E2DA;padding-top:32px;margin-top:32px;font-size:11px;color:#98988E;">
+    Clean Shopper Design System v2.2 · Updated 2026-04-15 · Plus Jakarta Sans via Google Fonts · Phosphor Icons
   </footer>
 
 </body>

@@ -1,4 +1,5 @@
 import type { FC, FormEvent } from 'react';
+import { MagnifyingGlass } from '@phosphor-icons/react';
 import Button from './Button';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -48,6 +49,7 @@ const SearchBar: FC<SearchBarProps> = ({
         label="Search"
         variant="primary"
         type="submit"
+        icon={<MagnifyingGlass size={16} />}
         isLoading={isLoading}
         disabled={disabled}
       />

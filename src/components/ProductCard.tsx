@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { BookmarkSimple } from '@phosphor-icons/react';
 import SafetyBadge from './SafetyBadge';
 import CategoryTag from './CategoryTag';
 import Button from './Button';
@@ -80,7 +81,8 @@ const ProductCard: FC<ProductCardProps> = ({
         'bg-white rounded-lg shadow-sm',
         'p-space-xl flex flex-col gap-space-md h-full',
         'transition-shadow duration-200',
-        isInteractive ? 'cursor-pointer hover:shadow-md' : '',
+        'hover:shadow-md',
+        isInteractive ? 'cursor-pointer' : '',
       ]
         .filter(Boolean)
         .join(' ')}
@@ -118,7 +120,8 @@ const ProductCard: FC<ProductCardProps> = ({
         >
           <Button
             label={isSaved ? '✓ Saved' : 'Save to List'}
-            variant="primary"
+            variant={isSaved ? 'ghost' : 'secondary'}
+            icon={<BookmarkSimple size={16} weight={isSaved ? 'fill' : 'regular'} />}
             onClick={onSave}
           />
         </div>

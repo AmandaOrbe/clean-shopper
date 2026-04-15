@@ -1,6 +1,6 @@
 # Component Specification: Clean Shopper
-**Version:** 1.0
-**Last Updated:** 2026-04-04
+**Version:** 1.2
+**Last Updated:** 2026-04-15
 **Source:** Derived from /docs/design-system.md, tailwind.config.js, and project-context.md
 
 ---
@@ -20,6 +20,9 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 7. [InputField](#7-inputfield)
 8. [EmptyState](#8-emptystate)
 9. [FilterPill](#9-filterpill)
+10. [Spinner](#10-spinner)
+11. [Toast](#11-toast)
+12. [Select](#12-select)
 
 ---
 
@@ -231,9 +234,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 **Used in:** Every page in the app as the topmost element.
 
 ### Props
-| Prop | Type | Required | Default | Notes |
-|---|---|---|---|---|
-| `activeRoute` | `string` | ✅ | — | Current path; used to apply active styles to the matching link |
+None. NavBar uses `useLocation()` internally to determine the active route — no props required.
 
 ### Visual Structure
 ```
@@ -258,9 +259,12 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 ### Nav Items (V1)
 | Label | Route |
 |---|---|
-| Search | `/` |
+| Search | `/search` |
+| Browse | `/browse` |
 | My Library | `/library` |
 | Shopping List | `/list` |
+
+The brand name "Clean Shopper" links to `/` (HomePage — marketing landing page).
 
 ### States
 | State | Treatment |
@@ -279,54 +283,62 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 
 ## 6. Button
 
-**Purpose:** The standard interactive action trigger across all surfaces, available in primary, secondary, and ghost variants.
+**Purpose:** The standard interactive action trigger across all surfaces, available in primary, secondary, and ghost variants with optional icon support and three sizes.
+
+**Icon library:** `@phosphor-icons/react` — always use weight `regular` unless a specific weight is needed for emphasis.
 
 **Used in:** Every page and every interactive context in the app.
 
 ### Props
 | Prop | Type | Required | Default | Notes |
 |---|---|---|---|---|
-| `label` | `string` | ✅ | — | Button text |
+| `label` | `string` | ❌ | — | Button text; required unless `iconOnly` |
 | `variant` | `'primary' \| 'secondary' \| 'ghost'` | ✅ | — | Visual treatment |
+| `size` | `'sm' \| 'md' \| 'lg'` | ❌ | `'md'` | Controls padding and text size |
 | `onClick` | `() => void` | ❌ | — | Click handler; omit when `type="submit"` |
 | `type` | `'button' \| 'submit' \| 'reset'` | ❌ | `'button'` | HTML button type |
 | `disabled` | `boolean` | ❌ | `false` | Disables interaction |
-| `isLoading` | `boolean` | ❌ | `false` | Replaces label with spinner |
-| `icon` | `ReactNode` | ❌ | — | Optional leading icon |
+| `isLoading` | `boolean` | ❌ | `false` | Replaces content with spinner |
+| `icon` | `ReactNode` | ❌ | — | Phosphor icon element |
+| `iconPosition` | `'left' \| 'right'` | ❌ | `'left'` | Side the icon appears on |
+| `iconOnly` | `boolean` | ❌ | `false` | Renders icon with no label; `label` becomes `aria-label` |
 | `fullWidth` | `boolean` | ❌ | `false` | `w-full` for full-width contexts |
+
+### Sizes
+| Size | Padding | Text |
+|---|---|---|
+| `sm` | `px-space-md py-space-xs` | `text-small` |
+| `md` | `px-space-xl py-space-sm` | `text-body` |
+| `lg` | `px-space-2xl py-space-md` | `text-body` |
+
+Icon-only padding uses `p-space-xs / p-space-sm / p-space-md` to keep it square.
 
 ### Visual Structure
 
 **Primary**
 ```
 <button>
-  bg-primary text-neutral-50
-  hover:bg-primary-dark
-  px-space-lg py-space-sm rounded-md
-  text-body font-semibold
-  transition-colors duration-150
+  bg-primary text-neutral-50 hover:bg-primary-dark
+  rounded-full font-semibold transition-colors duration-150
+  inline-flex items-center justify-center gap-space-sm
   disabled:opacity-50 disabled:cursor-not-allowed
 ```
 
 **Secondary**
 ```
 <button>
-  bg-transparent text-primary border border-primary
-  hover:bg-primary/10
-  px-space-lg py-space-sm rounded-md
-  text-body font-semibold
-  transition-colors duration-150
+  bg-transparent text-primary border border-primary hover:bg-primary/10
+  rounded-full font-semibold transition-colors duration-150
+  inline-flex items-center justify-center gap-space-sm
   disabled:opacity-50 disabled:cursor-not-allowed
 ```
 
 **Ghost**
 ```
 <button>
-  bg-transparent text-neutral-600
-  hover:text-neutral-900 hover:bg-neutral-200
-  px-space-md py-space-sm rounded-md
-  text-body
-  transition-colors duration-150
+  bg-transparent text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200
+  rounded-full transition-colors duration-150
+  inline-flex items-center justify-center gap-space-sm
   disabled:opacity-50 disabled:cursor-not-allowed
 ```
 
@@ -336,14 +348,16 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | Default | Per variant above |
 | Hover | Darker fill (primary), tinted fill (secondary), neutral fill (ghost) |
 | Disabled | `opacity-50 cursor-not-allowed` — no hover effect |
-| Loading | Replace label with inline spinner; maintain button dimensions |
+| Loading | Spinner replaces all content; dimensions maintained |
 
 ### Usage Rules
 - **Primary** is for the single most important action per view or section. Do not use more than one primary button per visible context.
 - **Secondary** is for supporting actions that exist alongside a primary action (e.g. "Cancel" next to "Save").
 - **Ghost** is for low-emphasis actions like navigation, dismissal, or contextual tools.
+- **Icon-only** buttons must always have a `label` for the `aria-label`. Never render an icon-only button without it.
+- **Icons** come from `@phosphor-icons/react`. Use `size={16}` for `sm`, `size={18}` for `md`/`lg`.
 - **Never** use primary for destructive actions — use ghost with `text-error` instead.
-- **Never** hardcode a color or size that is not in the three defined variants. Add a variant if a new one is genuinely needed.
+- **Never** hardcode a color or size outside the defined variants and sizes.
 
 ---
 
@@ -499,3 +513,153 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 - **Do not use** for boolean attributes on a product — those belong on the ProductCard or a detail view.
 - Render as a horizontal row of pills; wrap naturally on small screens.
 - Only one pill per filter dimension should be active at a time unless multi-select is explicitly required.
+
+---
+
+## 10. Spinner
+
+**Purpose:** A standalone loading indicator for async operations that don't have a skeleton state — e.g. full-page loading, inline data fetching, or button-adjacent status.
+
+**Used in:** Page-level loading, inline async feedback, anywhere `isLoading` on Button is insufficient.
+
+### Props
+| Prop | Type | Required | Default | Notes |
+|---|---|---|---|---|
+| `size` | `'sm' \| 'md' \| 'lg'` | ❌ | `'md'` | Controls dimensions |
+| `label` | `string` | ❌ | `'Loading'` | Accessible `aria-label` on the wrapper |
+
+### Visual Structure
+```
+<span role="status" aria-label={label}>
+  <span>
+    rounded-full animate-spin
+    border-neutral-300 border-t-primary
+
+    sm: w-4 h-4 border-2
+    md: w-6 h-6 border-2
+    lg: w-10 h-10 border-[3px]
+```
+
+### Usage Rules
+- **Use** for async states that have no skeleton treatment.
+- **Do not use** inside Button — Button has its own built-in spinner via `isLoading`.
+- Always include a meaningful `label` for screen readers.
+- Center within its container; never float or position absolutely without wrapping context.
+
+---
+
+## 11. Toast
+
+**Purpose:** Transient feedback notifications that appear at the bottom-right of the screen. Auto-dismiss after a configurable duration. Used to confirm actions, surface errors, or share contextual tips.
+
+**Files:** `src/components/Toast.tsx` (Toast + ToastContainer), `src/lib/use-toast.ts` (hook)
+
+**Used in:** Any page where an action produces feedback — saving a product, search errors, copy confirmations.
+
+### ToastProps
+| Prop | Type | Required | Default | Notes |
+|---|---|---|---|---|
+| `id` | `string` | ✅ | — | Unique ID, managed by `useToast` |
+| `message` | `string` | ✅ | — | The feedback text shown to the user |
+| `variant` | `'success' \| 'error' \| 'warning' \| 'info'` | ❌ | `'info'` | Controls icon and border color |
+| `duration` | `number` | ❌ | `4000` | Ms before auto-dismiss; `0` = persist |
+| `onDismiss` | `(id: string) => void` | ✅ | — | Called on timeout or close button click |
+
+### useToast hook
+```ts
+const { toasts, toast, dismiss } = useToast();
+toast('Message', 'success');          // auto-dismiss after 4s
+toast('Message', 'error', 0);         // persistent
+dismiss(id);                          // manual dismiss
+```
+
+### Visual Structure
+```
+// ToastContainer — fixed, bottom-right, z-50
+<div className="fixed bottom-space-xl right-space-xl z-50 flex flex-col gap-space-sm items-end">
+
+  // Individual Toast
+  <div role="alert" aria-live="polite">
+    bg-white border rounded-lg shadow-md
+    px-space-md py-space-sm
+    min-w-[280px] max-w-sm
+    flex items-start gap-space-sm
+
+    ├── <Icon size={18} weight="fill" />   ← variant color
+    ├── <p> text-small text-neutral-900
+    └── <X size={16} />                    ← dismiss button
+```
+
+### Variant config
+| Variant | Icon | Border |
+|---|---|---|
+| `success` | `CheckCircle` | `border-success/20` / `text-success` |
+| `error` | `XCircle` | `border-error/20` / `text-error` |
+| `warning` | `WarningCircle` | `border-warning/20` / `text-warning` |
+| `info` | `Info` | `border-primary/20` / `text-primary` |
+
+### Usage Rules
+- Always use `useToast` hook — never instantiate Toast directly.
+- Always render `<ToastContainer>` at the root of the page or layout that uses toasts.
+- Keep messages under 80 characters — toasts are glanceable, not detailed.
+- Use `duration: 0` only for errors that require user acknowledgement.
+- **Do not use** toasts for loading states — use Spinner or skeleton instead.
+- **Do not stack** more than 3 toasts simultaneously.
+
+---
+
+## 12. Select
+
+**Purpose:** A styled native `<select>` dropdown for single-option choices from a predefined list. Used for sort order, rating filters, and other constrained selections.
+
+**Used in:** Browse page (sort), Search page (filter by rating), any form requiring a fixed option set.
+
+### Props
+| Prop | Type | Required | Default | Notes |
+|---|---|---|---|---|
+| `value` | `string` | ✅ | — | Controlled selected value |
+| `onChange` | `(value: string) => void` | ✅ | — | Updates controlled state |
+| `options` | `SelectOption[]` | ✅ | — | `{ value: string; label: string }[]` |
+| `label` | `string` | ❌ | — | Renders a `<label>` above the select when provided |
+| `placeholder` | `string` | ❌ | — | Disabled first option shown when no value is selected |
+| `disabled` | `boolean` | ❌ | `false` | Disables interaction |
+| `id` | `string` | ❌ | auto-generated | Links `<label>` to `<select>` via `htmlFor` |
+
+### Visual Structure
+```
+<div> flex flex-col gap-space-xs
+
+  ├── [label &&]
+  │     <label htmlFor={id}>
+  │       text-h4 text-neutral-900
+
+  └── <div> relative inline-flex items-center
+
+        ├── <select>
+        │     appearance-none w-full
+        │     bg-neutral-100 border border-neutral-200 rounded-md
+        │     px-space-md py-space-sm pr-space-xl
+        │     text-body text-neutral-900
+        │     focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none
+        │     transition-colors duration-150 cursor-pointer
+        │     disabled: opacity-50 cursor-not-allowed
+
+        └── <CaretDown size={14} weight="bold" />
+              pointer-events-none absolute right-space-sm text-neutral-400
+```
+
+### States
+| State | Treatment |
+|---|---|
+| Default | `border-neutral-200 bg-neutral-100` |
+| Focus | `border-primary ring-2 ring-primary/20 outline-none` |
+| Disabled | `opacity-50 cursor-not-allowed` |
+| With placeholder | Placeholder option is `disabled` and shown when `value === ''` |
+
+### Usage Rules
+- **Use** for fixed-option selections (sort order, filter values, predefined categories).
+- **Do not use** for free-text input — use InputField instead.
+- **Do not use** for search/autocomplete — that requires a custom combobox pattern.
+- Always provide a `placeholder` when the field is optional so the empty state is clear.
+- `label` is strongly recommended for accessibility; omit only in compact filter-pill contexts where the surrounding UI makes the purpose obvious.
+- The `CaretDown` icon is decorative and must be `pointer-events-none` so it doesn't intercept clicks.

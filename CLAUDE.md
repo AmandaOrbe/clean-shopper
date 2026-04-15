@@ -22,9 +22,11 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Components: PascalCase filenames, one component per file, lives in /src/components/ (if shared) or the relevant /src/features/ subfolder (if screen-specific)
 - Components: Always check /docs/component-spec.md before building any UI element. If an existing component covers the use case, use it. Only create a new component if no spec covers the pattern, and add the new component to component-spec.md before moving on.
 - Utility functions: camelCase, lives in /src/lib/
-- API calls: all external API calls through /src/lib/api/, never inline in components
+- API calls: all external API calls through /src/lib/api/, never inline in components. This directory does not exist yet — create it when adding the first external API call (Claude API or EWG). Supabase client lives at /src/lib/supabase.ts.
 - Styling: Tailwind only. No inline styles. No CSS modules.
 - Styling: Use Tailwind theme classes for all design token values. Never hardcode hex colors, pixel font sizes, or spacing values in components. If a needed token does not exist in the Tailwind config, add it there rather than hardcoding the value. This means bg-primary not #2D7B5E, text-h3 not text-lg, p-lg not p-4.
+- Styling: This project uses Tailwind v4. In v4, src/styles/globals.css (@theme block) is the authoritative source for all design tokens — not tailwind.config.js. When adding or changing any token (color, font size, spacing, radius, shadow), update globals.css first. Keep tailwind.config.js in sync for IDE autocomplete support.
+- Icons: Use @phosphor-icons/react exclusively. Import named exports (e.g. MagnifyingGlass, BookmarkSimple). For filled variants use the weight prop: weight="fill". For bold/active states use weight="bold". Do not import non-existent icon names — verify against the package before using.
 - State: React useState and useContext only. No Redux, no Zustand.
 - File naming: kebab-case for all non-component files
 
@@ -42,4 +44,6 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Project context skill: Run /project-context with source material (brief, PRD, notes) to generate or update /docs/project-context.md
 - Prompt optimizer skill: Use /prompt-optimizer to evaluate and refine instructions before sending them.
 - Design system: See /docs/design-system.md — follow these visual specifications for all UI work. Do not hardcode colors, font sizes, spacing, or shadows.
+- Design system visual: See design-system-visual.html — static HTML reference for all tokens and component previews. Open in a browser. Keep in sync when tokens or components change.
 - Tailwind config: See tailwind.config.js for design tokens as Tailwind theme extensions. Always use theme classes, never hardcode values.
+- Component playground: Route /playground (src/features/playground/PlaygroundPage.tsx) — isolated visual preview of all components and their states. Add new components here when built.

@@ -38,11 +38,11 @@ export default {
         display: ['56px', { lineHeight: '1.05', fontWeight: '800' }],
         h1:      ['40px', { lineHeight: '1.15', fontWeight: '700' }],
         h2:      ['28px', { lineHeight: '1.25', fontWeight: '700' }],
-        h3:      ['20px', { lineHeight: '1.35', fontWeight: '600' }],
-        h4:      ['16px', { lineHeight: '1.4',  fontWeight: '600' }],
-        body:    ['16px', { lineHeight: '1.6',  fontWeight: '400' }],
-        small:   ['14px', { lineHeight: '1.5',  fontWeight: '400' }],
-        micro:   ['12px', { lineHeight: '1.4',  fontWeight: '400' }],
+        h3:      ['20px', { lineHeight: '1.35', fontWeight: '700' }],
+        h4:      ['16px', { lineHeight: '1.4',  fontWeight: '700' }],
+        body:    ['14px', { lineHeight: '1.6',  fontWeight: '400' }],
+        small:   ['12px', { lineHeight: '1.5',  fontWeight: '400' }],
+        micro:   ['11px', { lineHeight: '1.4',  fontWeight: '400' }],
       },
 
       spacing: {
