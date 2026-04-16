@@ -18,6 +18,9 @@ dist-ssr
 # Superpowers brainstorming scratch files
 .superpowers/
 
+# Git worktrees
+.worktrees/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
