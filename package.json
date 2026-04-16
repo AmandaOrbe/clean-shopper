@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "ingest": "tsx --env-file=.env.local scripts/ingest-products.ts"
+    "ingest": "env -u ANTHROPIC_API_KEY tsx --env-file=.env.local scripts/ingest-products.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

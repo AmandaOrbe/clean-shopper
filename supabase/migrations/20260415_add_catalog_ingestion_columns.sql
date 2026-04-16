@@ -11,7 +11,7 @@ ALTER TABLE products
   ADD COLUMN IF NOT EXISTS assessment_notes text;
 
 -- external_id is the upsert idempotency key for SerpAPI-sourced rows.
--- Unique when set, but nullable so pre-ingestion seed rows are not affected.
-CREATE UNIQUE INDEX IF NOT EXISTS products_external_id_unique
-  ON products (external_id)
-  WHERE external_id IS NOT NULL;
+-- Must be a UNIQUE CONSTRAINT (not just an index) so Supabase onConflict works.
+-- Nullable so pre-ingestion seed rows are not affected (PostgreSQL allows multiple NULLs).
+ALTER TABLE products
+  ADD CONSTRAINT products_external_id_unique UNIQUE (external_id);
