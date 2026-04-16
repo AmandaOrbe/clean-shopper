@@ -28,11 +28,11 @@ export interface ProductCardProps {
 const ProductImage: FC<{ imageUrl?: string; alt: string }> = ({ imageUrl, alt }) => {
   if (imageUrl) {
     return (
-      <div className="aspect-[4/3] w-full bg-neutral-100 overflow-hidden">
+      <div className="aspect-[4/3] w-full bg-white overflow-hidden">
         <img
           src={imageUrl}
           alt={alt}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           loading="lazy"
         />
       </div>
@@ -124,7 +124,7 @@ const ProductCard: FC<ProductCardProps> = ({
         {/* Header: name + safety badge */}
         <header className="flex items-start justify-between gap-space-sm">
           <div className="flex flex-col gap-space-sm min-w-0">
-            <h3 className="text-h3 text-neutral-900">{name}</h3>
+            <h3 className="text-h3 text-neutral-900 line-clamp-3">{name}</h3>
             {brand && (
               <span className="text-small text-neutral-400">{brand}</span>
             )}
