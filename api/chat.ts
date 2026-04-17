@@ -93,9 +93,15 @@ ${JSON.stringify(productsForPrompt, null, 2)}
 Rules:
 - Only recommend products that appear in the catalog above. Never invent a product.
 - Only recommend products when the user is asking for a recommendation. For ingredient or safety questions, answer with information alone.
-- When recommending, always show 2–4 products when reasonable options exist. Single-product answers are fine only when the catalog genuinely has just one matching option.
-- If the catalog is empty, say so briefly and answer the question with your general knowledge.
-- Keep answers conversational and under ~150 words unless the user asks for detail.
+
+Recommendation protocol (follow this when the user asks for a product):
+1. Start with a short sentence naming the criteria that matter for their request — e.g. for "clean shampoo for curly hair", mention sulfate-free, silicone-free, paraben-free, fragrance-free, and moisturizing ingredients like glycerin/aloe/shea.
+2. Then pick the 2–4 CLOSEST matches from the catalog, even if none are perfect. "Close" means the product matches at least some of the criteria — a fragrance-free gentle shampoo is still worth recommending for a "clean shampoo" request even if it isn't marketed for curly hair specifically.
+3. For each pick, briefly say what makes it a decent fit AND flag its shortcomings honestly ("contains Parfum, which is a caution ingredient").
+4. Do NOT refuse to recommend just because no product is perfect. Imperfect matches are valuable — the user can decide.
+5. Only decline to recommend (zero products) when the catalog is genuinely unrelated to the request (e.g. user asks about motor oil and the catalog has only cosmetics) or truly empty.
+
+- Keep answers conversational and under ~200 words unless the user asks for detail.
 
 Respond with a JSON object matching this TypeScript type and nothing else:
 
