@@ -6,6 +6,7 @@ import HomePage from './features/home/HomePage';
 import BrowsePage from './features/browse/BrowsePage';
 import SearchPage from './features/search/SearchPage';
 import PlaygroundPage from './features/playground/PlaygroundPage';
+import ChatPage from './features/chat/ChatPage';
 import SignInPage from './features/auth/SignInPage';
 import SignUpPage from './features/auth/SignUpPage';
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/browse" element={<BrowsePage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/playground" element={<PlaygroundPage />} />
           </Route>
         </Routes>
