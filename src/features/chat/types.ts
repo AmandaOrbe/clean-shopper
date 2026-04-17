@@ -17,6 +17,7 @@ export interface ChatProduct {
   category: string;
   description: string;
   image_url?: string;
+  image_url_transparent?: string;
   safety_rating: SafetyRating;
   safety_score?: number;
 }

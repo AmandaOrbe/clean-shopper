@@ -28,6 +28,7 @@ interface ProductRow {
   category: string;
   description: string;
   image_url: string | null;
+  image_url_transparent: string | null;
   ingredients: string | null;
   safety_rating: 'clean' | 'caution' | 'avoid';
   safety_score: number | null;
@@ -163,7 +164,7 @@ export default async function handler(req: Request): Promise<Response> {
     const { data: rows, error: dbError } = await supabase
       .from('products')
       .select(
-        'id,name,brand,category,description,image_url,ingredients,safety_rating,safety_score,assessment_notes'
+        'id,name,brand,category,description,image_url,image_url_transparent,ingredients,safety_rating,safety_score,assessment_notes'
       )
       .or(orClause)
       .limit(20);
@@ -232,6 +233,7 @@ export default async function handler(req: Request): Promise<Response> {
       category: p.category,
       description: p.description,
       image_url: p.image_url ?? undefined,
+      image_url_transparent: p.image_url_transparent ?? undefined,
       safety_rating: p.safety_rating,
       safety_score: p.safety_score ?? undefined,
     }));

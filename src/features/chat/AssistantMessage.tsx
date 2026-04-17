@@ -20,6 +20,7 @@ const ProductGrid: FC<{ products: ChatProduct[] }> = ({ products }) => (
         category={p.category}
         description={p.description}
         imageUrl={p.image_url}
+        imageUrlTransparent={p.image_url_transparent}
       />
     ))}
   </div>
