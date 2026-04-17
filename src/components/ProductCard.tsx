@@ -16,6 +16,7 @@ export interface ProductCardProps {
   category: string;
   description: string;
   imageUrl?: string;
+  imageUrlTransparent?: string;
   retailer?: string;
   onClick?: () => void;
   onSave?: () => void;
@@ -25,12 +26,17 @@ export interface ProductCardProps {
 
 // ─── Image region ─────────────────────────────────────────────────────────────
 
-const ProductImage: FC<{ imageUrl?: string; alt: string }> = ({ imageUrl, alt }) => {
-  if (imageUrl) {
+const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: string }> = ({
+  imageUrl,
+  imageUrlTransparent,
+  alt,
+}) => {
+  const src = imageUrlTransparent ?? imageUrl;
+  if (src) {
     return (
       <div className="aspect-[4/3] w-full bg-neutral-100 overflow-hidden">
         <img
-          src={imageUrl}
+          src={src}
           alt={alt}
           className="w-full h-full object-contain"
           loading="lazy"
@@ -86,6 +92,7 @@ const ProductCard: FC<ProductCardProps> = ({
   category,
   description,
   imageUrl,
+  imageUrlTransparent,
   retailer,
   onClick,
   onSave,
@@ -117,7 +124,7 @@ const ProductCard: FC<ProductCardProps> = ({
         .join(' ')}
     >
       {/* ── Image ── */}
-      <ProductImage imageUrl={imageUrl} alt={name} />
+      <ProductImage imageUrl={imageUrl} imageUrlTransparent={imageUrlTransparent} alt={name} />
 
       {/* ── Body ── */}
       <div className="p-space-xl flex flex-col gap-space-md flex-1">
