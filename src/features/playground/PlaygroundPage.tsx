@@ -10,6 +10,8 @@ import SearchBar from '../../components/SearchBar';
 import { ToastContainer } from '../../components/Toast';
 import { useToast } from '../../lib/use-toast';
 import { useState } from 'react';
+import UserMessage from '../chat/UserMessage';
+import AssistantMessage from '../chat/AssistantMessage';
 import {
   MagnifyingGlass,
   BookmarkSimple,
@@ -319,6 +321,53 @@ const PlaygroundPage = () => {
               message="Try a different search term or browse by category."
             />
           </div>
+        </Row>
+      </Section>
+
+      {/* ── Chat messages (feature-local components from src/features/chat/) ── */}
+      <Section title="Chat messages">
+        <Row label="User message">
+          <div className="w-full">
+            <UserMessage text="Recommend a clean shampoo for curly hair" />
+          </div>
+        </Row>
+        <Row label="Assistant message with product grid">
+          <div className="w-full">
+            <AssistantMessage
+              message={{
+                role: 'assistant',
+                text: "For a clean shampoo for curly hair, look for sulfate-free, silicone-free, and paraben-free formulations.\n\nHere's the closest match in your catalog — it's gentle and hydrating, though it does contain Parfum (caution ingredient).",
+                products: [
+                  {
+                    id: 1,
+                    name: 'Demo Gentle Shampoo',
+                    brand: 'Demo Brand',
+                    category: 'Hair Care',
+                    description: 'Sulfate-free hydrating formula, sample product for the playground.',
+                    safety_rating: 'caution',
+                    safety_score: 72,
+                  },
+                ],
+              }}
+            />
+          </div>
+        </Row>
+        <Row label="Assistant error with Retry">
+          <div className="w-full">
+            <AssistantMessage
+              message={{
+                role: 'error',
+                text: 'Assistant unavailable',
+                lastUserText: 'Recommend a clean shampoo for curly hair',
+              }}
+              onRetry={() => {}}
+            />
+          </div>
+        </Row>
+        <Row label="Live chat page">
+          <p className="text-small text-neutral-500 m-0">
+            The full chat (empty state, input, multi-turn flow) lives at <code>/chat</code>.
+          </p>
         </Row>
       </Section>
     </main>
