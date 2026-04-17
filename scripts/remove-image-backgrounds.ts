@@ -91,16 +91,18 @@ async function fetchCandidates(): Promise<ProductRow[]> {
   return all.slice(0, LIMIT === Infinity ? all.length : LIMIT);
 }
 
-async function downloadImage(url: string): Promise<Buffer> {
+async function downloadImage(url: string): Promise<{ buf: Buffer; contentType: string }> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const contentType = res.headers.get('content-type') ?? 'image/jpeg';
   const arrayBuf = await res.arrayBuffer();
-  return Buffer.from(arrayBuf);
+  return { buf: Buffer.from(arrayBuf), contentType };
 }
 
-async function removeBg(buf: Buffer): Promise<Buffer> {
-  // The library accepts a Blob; wrap the Buffer.
-  const blob = new Blob([buf]);
+async function removeBg(buf: Buffer, contentType: string): Promise<Buffer> {
+  // @imgly/background-removal-node uses blob.type to dispatch its decoder,
+  // so we must carry the Content-Type through from the HTTP response.
+  const blob = new Blob([buf], { type: contentType });
   const resultBlob = await removeBackground(blob);
   const outArrayBuf = await resultBlob.arrayBuffer();
   return Buffer.from(outArrayBuf);
@@ -165,8 +167,8 @@ async function main() {
     }
 
     try {
-      const srcBuf = await downloadImage(p.image_url);
-      const pngBuf = await removeBg(srcBuf);
+      const { buf: srcBuf, contentType } = await downloadImage(p.image_url);
+      const pngBuf = await removeBg(srcBuf, contentType);
       const publicUrl = await uploadToStorage(p.id, pngBuf);
       await writeUrlToRow(p.id, publicUrl);
       log(`${tag} OK ${p.brand} — ${p.name}`);
