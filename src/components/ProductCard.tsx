@@ -28,7 +28,7 @@ export interface ProductCardProps {
 const ProductImage: FC<{ imageUrl?: string; alt: string }> = ({ imageUrl, alt }) => {
   if (imageUrl) {
     return (
-      <div className="aspect-[4/3] w-full bg-white overflow-hidden">
+      <div className="aspect-[4/3] w-full bg-neutral-100 overflow-hidden">
         <img
           src={imageUrl}
           alt={alt}
