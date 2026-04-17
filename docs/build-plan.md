@@ -46,7 +46,7 @@
 - [ ] Category grouping in library
 
 ## Phase 7 — AI Integration
-- [ ] Claude API integration (claude-sonnet-4-20250514) for ingredient analysis
+- [x] Claude API integration (claude-sonnet-4-6) for catalog-grounded chat (`/chat`)
 - [ ] EWG Skin Deep API integration
 - [ ] Product detail view with AI assessment
 - [ ] Ingredient breakdown component

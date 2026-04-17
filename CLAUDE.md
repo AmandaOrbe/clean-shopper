@@ -8,7 +8,7 @@ V2: Multi-user app with Supabase Auth. Users sign up and sign in with email and 
 ## Tech Stack
 - React (Vite) -- frontend UI
 - Supabase -- database and data layer (PostgreSQL)
-- Claude API (claude-sonnet-4-20250514) -- AI product research and ingredient analysis
+- Claude API (claude-sonnet-4-6) -- AI product research and ingredient analysis
 - EWG Skin Deep API -- ingredient safety data
 - Vercel -- deployment
 - Tailwind CSS -- styling
@@ -34,7 +34,7 @@ V2: Multi-user app with Supabase Auth. Users sign up and sign in with email and 
 - Do not use CSS other than Tailwind
 - Do not add features outside the current build phase without asking first
 - Do not create new components when an existing component in the component library covers the use case
-- Do not use any AI model other than claude-sonnet-4-20250514
+- Do not use any AI model other than claude-sonnet-4-6
 
 ## References
 - Component spec: See /docs/component-spec.md — use existing components before creating new ones. Follow the spec for props, states, and visual structure.
