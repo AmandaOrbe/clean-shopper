@@ -142,7 +142,7 @@ export default async function handler(req: Request): Promise<Response> {
   let replyText: string;
   try {
     const reply = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       system: buildSystemPrompt(candidates),
       messages: messages.map((m) => ({
