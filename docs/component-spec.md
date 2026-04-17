@@ -716,3 +716,27 @@ dismiss(id);                          // manual dismiss
 - Always provide a `placeholder` when the field is optional so the empty state is clear.
 - `label` is strongly recommended for accessibility; omit only in compact filter-pill contexts where the surrounding UI makes the purpose obvious.
 - The `CaretDown` icon is decorative and must be `pointer-events-none` so it doesn't intercept clicks.
+
+---
+
+## Chat Feature Components (feature-local)
+
+These components live in `src/features/chat/` and are used only by `ChatPage`. They are not shared. Do not import them from outside `src/features/chat/`.
+
+### ChatPage
+Route container at `/chat`. Owns conversation state via `useChat`. Renders `ChatEmptyState` when no messages, otherwise `MessageList`. `ChatInput` is always pinned to the bottom.
+
+### ChatEmptyState
+Three labeled category cards (Recommend / Ingredients / Safety) each with one example prompt. Clicking a card calls `onPickPrompt(text)` — it pre-fills the input but does not auto-send.
+
+### MessageList
+Scrolling list of `UserMessage` and `AssistantMessage` rows. Auto-scrolls to the bottom on new messages. Renders a "Thinking…" spinner after the last message while `isLoading`.
+
+### UserMessage
+Right-aligned bubble containing the user's text. Primary background, white text, preserves whitespace.
+
+### AssistantMessage
+Left-aligned neutral bubble with the assistant's prose plus an optional 3-column grid of `ProductCard`s. Also handles `role: 'error'` messages with an inline Retry button.
+
+### ChatInput
+Textarea + send button. Enter sends; Shift+Enter inserts a newline. Accepts an `initialValue` to pre-fill from the empty state. Disabled while a request is in flight.
