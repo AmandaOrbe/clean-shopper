@@ -36,15 +36,32 @@ interface ProductRow {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-// Escape characters that have meaning inside a Postgres ilike pattern or inside
-// Supabase's `.or()` filter string. `%` and `_` are ilike wildcards; `,` and
-// `)` break the .or() argument parser.
-function sanitizeForIlike(raw: string): string {
+// Tokens we drop because they're either grammatical noise or too broad to narrow
+// the catalog meaningfully. "clean" and "safe" sound topical but they appear in
+// so many marketing descriptions that keeping them would match almost everything.
+const STOPWORDS = new Set([
+  'a', 'an', 'the', 'and', 'or', 'but', 'for', 'with', 'without', 'from',
+  'into', 'about', 'what', 'which', 'who', 'how', 'why', 'when', 'where',
+  'recommend', 'recommendation', 'find', 'show', 'tell', 'give', 'suggest',
+  'best', 'good', 'great', 'any', 'some', 'please', 'looking',
+  'me', 'my', 'mine', 'your', 'you', 'i', 'we', 'us',
+  'is', 'are', 'was', 'were', 'be', 'been', 'do', 'does', 'did',
+  'can', 'could', 'would', 'should', 'will', 'have', 'has', 'had',
+  'clean', 'safe', 'toxic', 'non', 'free',
+  'product', 'products', 'option', 'options',
+]);
+
+// Turn a free-form user message into a short list of substantive search keywords.
+// Drops punctuation that breaks Supabase's `.or()` parser or ilike wildcards,
+// lowercases, removes stopwords and short fragments, and caps the list length
+// so the generated OR clause stays cheap.
+function extractKeywords(raw: string): string[] {
   return raw
-    .trim()
-    .slice(0, 120) // keep filter cheap on long inputs
-    .replace(/[%_,()]/g, ' ')
-    .replace(/\s+/g, ' ');
+    .toLowerCase()
+    .replace(/[%_,()!?."':;]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w))
+    .slice(0, 6);
 }
 
 // Prompt sent to Claude. Products are serialized as compact JSON the model can
@@ -117,26 +134,42 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   // ── Pre-filter catalog ─────────────────────────────────────────────────────
-  const term = sanitizeForIlike(latestUser.text);
-  const pattern = `%${term}%`;
-  const { data: rows, error: dbError } = await supabase
-    .from('products')
-    .select(
-      'id,name,brand,category,description,image_url,ingredients,safety_rating,safety_score,assessment_notes'
-    )
-    .or(
-      `name.ilike.${pattern},brand.ilike.${pattern},category.ilike.${pattern},ingredients.ilike.${pattern}`
-    )
-    .limit(20);
+  const keywords = extractKeywords(latestUser.text);
 
-  if (dbError) {
-    console.error('[chat] supabase error', dbError);
-    return new Response(JSON.stringify({ error: 'Catalog lookup failed' }), {
-      status: 500,
-      headers: { 'content-type': 'application/json' },
-    });
+  // Build the .or() clause from each keyword × the four searchable columns.
+  // If no substantive keywords survived (e.g. the user typed only stopwords),
+  // skip the catalog query — Claude will answer with general knowledge.
+  let candidates: ProductRow[] = [];
+  if (keywords.length > 0) {
+    const orClause = keywords
+      .flatMap((w) => {
+        const p = `%${w}%`;
+        return [
+          `name.ilike.${p}`,
+          `brand.ilike.${p}`,
+          `category.ilike.${p}`,
+          `ingredients.ilike.${p}`,
+        ];
+      })
+      .join(',');
+
+    const { data: rows, error: dbError } = await supabase
+      .from('products')
+      .select(
+        'id,name,brand,category,description,image_url,ingredients,safety_rating,safety_score,assessment_notes'
+      )
+      .or(orClause)
+      .limit(20);
+
+    if (dbError) {
+      console.error('[chat] supabase error', dbError);
+      return new Response(JSON.stringify({ error: 'Catalog lookup failed' }), {
+        status: 500,
+        headers: { 'content-type': 'application/json' },
+      });
+    }
+    candidates = rows ?? [];
   }
-  const candidates: ProductRow[] = rows ?? [];
 
   // ── Call Claude ────────────────────────────────────────────────────────────
   let replyText: string;
