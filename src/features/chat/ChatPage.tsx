@@ -5,27 +5,36 @@ import MessageList from './MessageList';
 import ChatInput from './ChatInput';
 import { useChat } from './useChat';
 
+// When the user picks an example prompt, we want the ChatInput to pick up the
+// new text as a fresh mount — that way the component's initial state is the
+// seed, no prop→state sync effect needed. We bump `nonce` each pick so `key`
+// changes and forces a remount.
+interface Seed {
+  text: string;
+  nonce: number;
+}
+
 const ChatPage: FC = () => {
   const { messages, isLoading, send, retry } = useChat();
-  // When the user picks a prompt from the empty state, we pre-fill the input
-  // but do not auto-send. The `inputSeed` nonce lets ChatInput re-read it.
-  const [inputSeed, setInputSeed] = useState('');
+  const [seed, setSeed] = useState<Seed>({ text: '', nonce: 0 });
+
+  const pickPrompt = (text: string) => {
+    setSeed((s) => ({ text, nonce: s.nonce + 1 }));
+  };
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col h-[calc(100vh-64px)]">
       {messages.length === 0 ? (
-        <ChatEmptyState onPickPrompt={setInputSeed} />
+        <ChatEmptyState onPickPrompt={pickPrompt} />
       ) : (
         <MessageList messages={messages} isLoading={isLoading} onRetry={retry} />
       )}
       <div className="px-space-lg pb-space-lg">
         <ChatInput
-          onSend={(text) => {
-            setInputSeed('');
-            send(text);
-          }}
+          key={seed.nonce}
+          onSend={send}
           disabled={isLoading}
-          initialValue={inputSeed}
+          initialValue={seed.text}
         />
       </div>
     </div>
