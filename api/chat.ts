@@ -93,6 +93,7 @@ ${JSON.stringify(productsForPrompt, null, 2)}
 Rules:
 - Only recommend products that appear in the catalog above. Never invent a product.
 - Only recommend products when the user is asking for a recommendation. For ingredient or safety questions, answer with information alone.
+- When recommending, always show 2–4 products when reasonable options exist. Single-product answers are fine only when the catalog genuinely has just one matching option.
 - If the catalog is empty, say so briefly and answer the question with your general knowledge.
 - Keep answers conversational and under ~150 words unless the user asks for detail.
 
