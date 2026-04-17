@@ -8,10 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "ingest": "env -u ANTHROPIC_API_KEY tsx --env-file=.env.local scripts/ingest-products.ts"
+    "ingest": "env -u ANTHROPIC_API_KEY tsx --env-file=.env.local scripts/ingest-products.ts",
+    "bg-remove": "env -u ANTHROPIC_API_KEY tsx --env-file=.env.local scripts/remove-image-backgrounds.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
+    "@imgly/background-removal-node": "^1.4.5",
     "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.103.0",
     "@tailwindcss/vite": "^4.2.2",
