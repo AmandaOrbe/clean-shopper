@@ -16,6 +16,7 @@ interface Product {
   category: string;
   description: string;
   image_url: string | null;
+  image_url_transparent: string | null;
   retailer: string | null;
 }
 
@@ -116,6 +117,7 @@ const SearchPage = () => {
                 category={product.category}
                 description={product.description}
                 imageUrl={product.image_url ?? undefined}
+                imageUrlTransparent={product.image_url_transparent ?? undefined}
                 retailer={product.retailer ?? undefined}
                 onSave={() => toggleSave(product.id)}
                 isSaved={saved.has(product.id)}
