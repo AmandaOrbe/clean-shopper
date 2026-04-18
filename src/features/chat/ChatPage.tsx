@@ -17,9 +17,19 @@ interface Seed {
 const ChatPage: FC = () => {
   const { messages, isLoading, send, retry } = useChat();
   const [seed, setSeed] = useState<Seed>({ text: '', nonce: 0 });
+  const [saved, setSaved] = useState<Set<number>>(new Set());
 
   const pickPrompt = (text: string) => {
     setSeed((s) => ({ text, nonce: s.nonce + 1 }));
+  };
+
+  const toggleSave = (id: number) => {
+    setSaved((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   };
 
   return (
@@ -27,7 +37,13 @@ const ChatPage: FC = () => {
       {messages.length === 0 ? (
         <ChatEmptyState onPickPrompt={pickPrompt} />
       ) : (
-        <MessageList messages={messages} isLoading={isLoading} onRetry={retry} />
+        <MessageList
+          messages={messages}
+          isLoading={isLoading}
+          onRetry={retry}
+          saved={saved}
+          onToggleSave={toggleSave}
+        />
       )}
       <div className="px-space-lg pb-space-lg">
         <ChatInput
