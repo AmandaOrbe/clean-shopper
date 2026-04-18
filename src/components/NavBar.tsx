@@ -25,7 +25,7 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="bg-primary-dark px-space-2xl py-space-md flex items-center gap-space-xl">
+    <nav className="sticky top-0 z-50 bg-primary px-space-2xl py-space-md flex items-center gap-space-xl">
       {/* ── App name ── */}
       <Link to="/" className="text-h3 text-neutral-50 font-bold no-underline">
         Clean Shopper
