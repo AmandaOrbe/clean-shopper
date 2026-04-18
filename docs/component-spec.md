@@ -62,11 +62,11 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
   │         : <Package size={48} text-neutral-400 /> (placeholder)
   │
   └── <div> p-space-xl flex flex-col gap-space-md flex-1
-        ├── <header> flex items-start justify-between gap-space-sm
-        │     ├── <div> flex flex-col gap-space-sm min-w-0
-        │     │     ├── <h3> text-h3 text-neutral-900 line-clamp-2  ← title truncates at 2 lines
-        │     │     └── <span> text-small text-neutral-400  ← brand (optional)
-        │     └── <SafetyBadge rating={safetyRating} score={safetyScore} />
+        ├── <header> flex flex-col gap-space-sm
+        │     ├── <div> flex items-center justify-between gap-space-sm     ← top row: brand + badge
+        │     │     ├── <span> text-small text-neutral-400 min-w-0 truncate  ← brand (optional; empty span placeholder otherwise)
+        │     │     └── <SafetyBadge rating={safetyRating} score={safetyScore} />
+        │     └── <h3> text-h3 text-neutral-900 line-clamp-2                ← title, truncates at 2 lines
         │
         ├── <CategoryTag label={category} />
         ├── <p> text-body text-neutral-600  ← description
