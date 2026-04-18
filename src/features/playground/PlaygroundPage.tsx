@@ -7,7 +7,6 @@ import EmptyState from '../../components/EmptyState';
 import Spinner from '../../components/Spinner';
 import ProductCard from '../../components/ProductCard';
 import SearchBar from '../../components/SearchBar';
-import { ToastContainer } from '../../components/Toast';
 import { useToast } from '../../lib/use-toast';
 import { useState } from 'react';
 import UserMessage from '../chat/UserMessage';
@@ -46,12 +45,11 @@ const PlaygroundPage = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>('Baby Care');
   const [sortValue, setSortValue] = useState('');
   const [ratingValue, setRatingValue] = useState('');
-  const { toasts, toast, dismiss } = useToast();
+  const { toast } = useToast();
   const [isSaved, setIsSaved] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <>
     <main className="py-space-2xl px-space-3xl max-w-4xl">
       <h1 className="text-h1 text-neutral-900 mb-space-2xl">Component Playground</h1>
 
@@ -391,9 +389,6 @@ const PlaygroundPage = () => {
         </Row>
       </Section>
     </main>
-
-    <ToastContainer toasts={toasts} onDismiss={dismiss} />
-    </>
   );
 };
 
