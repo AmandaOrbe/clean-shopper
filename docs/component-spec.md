@@ -64,7 +64,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
   └── <div> p-space-xl flex flex-col gap-space-md flex-1
         ├── <header> flex items-start justify-between gap-space-sm
         │     ├── <div> flex flex-col gap-space-sm min-w-0
-        │     │     ├── <h3> text-h3 text-neutral-900
+        │     │     ├── <h3> text-h3 text-neutral-900 line-clamp-2  ← title truncates at 2 lines
         │     │     └── <span> text-small text-neutral-400  ← brand (optional)
         │     └── <div> flex flex-col items-end gap-space-xs shrink-0
         │           ├── <SafetyBadge rating={safetyRating} />
