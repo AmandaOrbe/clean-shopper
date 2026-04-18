@@ -137,14 +137,7 @@ const ProductCard: FC<ProductCardProps> = ({
             )}
           </div>
 
-          <div className="flex flex-col items-end gap-space-xs shrink-0">
-            <SafetyBadge rating={safetyRating} />
-            {safetyScore !== undefined && (
-              <span className="text-micro text-neutral-400">
-                {safetyScore}/100
-              </span>
-            )}
-          </div>
+          <SafetyBadge rating={safetyRating} score={safetyScore} />
         </header>
 
         {/* Category */}
