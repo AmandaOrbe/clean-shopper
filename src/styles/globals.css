@@ -90,13 +90,13 @@
   html {
     font-family: var(--font-family-sans);
     color: var(--color-neutral-900);
-    background-color: var(--color-neutral-50);
+    background-color: var(--color-neutral-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: var(--color-neutral-50);
+    background-color: var(--color-neutral-100);
     color: var(--color-neutral-900);
   }
 }
