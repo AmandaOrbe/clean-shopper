@@ -9,7 +9,7 @@ import {
   FirstAid,
   Baby,
   Wind,
-  Leaf,
+  Sun,
   ArrowRight,
   CheckCircle,
   Star,
@@ -29,6 +29,8 @@ const SAMPLE_PRODUCTS = [
     category: 'Face Care',
     description:
       'A lightweight daily moisturizer with glacial glycoprotein and imperata cylindrica. Free of parabens, mineral oil, and synthetic fragrance.',
+    imageUrl:
+      'https://www.kiehls.fr/dw/image/v2/AAQP_PRD/on/demandware.static/-/Sites-kie-master-catalog/default/dw572a12c9/convergence-packshots/skincare/creams/622/kiehls-face-ultra-facial-cream-50ml-3605970360757-whip.jpg?sw=930&sh=930&sm=cut&sfrm=png&q=70',
   },
   {
     name: 'Pantene Pro-V Shampoo',
@@ -38,15 +40,19 @@ const SAMPLE_PRODUCTS = [
     category: 'Hair Care',
     description:
       'Contains sodium lauryl sulfate and DMDM hydantoin, a formaldehyde-releasing preservative. Fragrance listed but not disclosed.',
+    imageUrl:
+      'https://cdn.notinoimg.com/detail_main_mq/pantene/8001841617817_01-o/pro-v-active-nutri-plex-intensive-repair___241105.jpg',
   },
   {
-    name: 'Tide Original Laundry Detergent',
-    brand: 'Procter and Gamble',
+    name: 'Axe Dark Temptation Body Spray',
+    brand: 'Axe',
     safetyRating: 'avoid' as const,
     safetyScore: 18,
-    category: 'Cleaning',
+    category: 'Body Care',
     description:
-      'Multiple high-concern ingredients: optical brighteners, synthetic musks, and undisclosed fragrance compounds with known allergens.',
+      'Undisclosed fragrance with multiple known allergens, butane and isobutane propellants, and BHT. High VOC emissions in enclosed spaces.',
+    imageUrl:
+      'https://cdn.notinoimg.com/detail_main_mq/axe/8717644685037_01-o/dark-temptation___260409.jpg',
   },
 ];
 
@@ -56,7 +62,7 @@ const CATEGORIES = [
   { label: 'Face Care',  icon: Sparkle,  count: '240+ products' },
   { label: 'Body Care',  icon: Drop,     count: '180+ products' },
   { label: 'Hair Care',  icon: Wind,     count: '160+ products' },
-  { label: 'Cleaning',   icon: Leaf,     count: '210+ products' },
+  { label: 'Sun Care',   icon: Sun,      count: '120+ products' },
   { label: 'Baby',       icon: Baby,     count: '95+ products'  },
   { label: 'Wellness',   icon: FirstAid, count: '130+ products' },
 ];
@@ -139,7 +145,7 @@ const HomePage = () => {
           </h1>
 
           <p className="text-h3 text-white/70 max-w-xl font-normal leading-relaxed">
-            Search any home or personal care product. Get an honest, AI-powered ingredient safety report in seconds.
+            Search any personal care product. Get an honest, AI-powered ingredient safety report in seconds.
           </p>
 
           <div className="max-w-xl">

@@ -80,7 +80,7 @@ const Button: FC<ButtonProps> = ({
           {icon && !iconOnly && iconPosition === 'left' && (
             <span className="shrink-0 inline-flex">{icon}</span>
           )}
-          {!iconOnly && label && <span>{label}</span>}
+          {!iconOnly && label && <span className="whitespace-nowrap">{label}</span>}
           {icon && !iconOnly && iconPosition === 'right' && (
             <span className="shrink-0 inline-flex">{icon}</span>
           )}

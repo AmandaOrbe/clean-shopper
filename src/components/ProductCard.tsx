@@ -38,7 +38,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-contain scale-[0.85] group-hover:scale-90 transition-transform duration-200"
+          className="w-full h-full object-contain mix-blend-multiply scale-[0.85] group-hover:scale-90 transition-transform duration-200"
           loading="lazy"
         />
       </div>

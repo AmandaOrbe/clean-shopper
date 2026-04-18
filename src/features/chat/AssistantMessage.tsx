@@ -6,9 +6,17 @@ import type { ChatProduct, Message } from './types';
 interface AssistantMessageProps {
   message: Extract<Message, { role: 'assistant' } | { role: 'error' }>;
   onRetry?: () => void;
+  saved?: Set<number>;
+  onToggleSave?: (id: number) => void;
 }
 
-const ProductGrid: FC<{ products: ChatProduct[] }> = ({ products }) => (
+interface ProductGridProps {
+  products: ChatProduct[];
+  saved: Set<number>;
+  onToggleSave: (id: number) => void;
+}
+
+const ProductGrid: FC<ProductGridProps> = ({ products, saved, onToggleSave }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md mt-space-md">
     {products.map((p) => (
       <ProductCard
@@ -21,12 +29,14 @@ const ProductGrid: FC<{ products: ChatProduct[] }> = ({ products }) => (
         description={p.description}
         imageUrl={p.image_url}
         imageUrlTransparent={p.image_url_transparent}
+        onSave={() => onToggleSave(p.id)}
+        isSaved={saved.has(p.id)}
       />
     ))}
   </div>
 );
 
-const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry }) => {
+const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry, saved, onToggleSave }) => {
   if (message.role === 'error') {
     return (
       <div className="bg-neutral-50 border border-neutral-200 rounded-lg px-space-md py-space-sm max-w-[80%]">
@@ -45,7 +55,9 @@ const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry }) => {
       <div className="bg-neutral-50 border border-neutral-200 rounded-lg px-space-md py-space-sm max-w-[80%] whitespace-pre-wrap">
         {message.text}
       </div>
-      {message.products.length > 0 && <ProductGrid products={message.products} />}
+      {message.products.length > 0 && saved && onToggleSave && (
+        <ProductGrid products={message.products} saved={saved} onToggleSave={onToggleSave} />
+      )}
     </div>
   );
 };
