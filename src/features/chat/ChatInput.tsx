@@ -31,7 +31,7 @@ const ChatInput: FC<ChatInputProps> = ({ onSend, disabled = false, initialValue 
   }
 
   return (
-    <div className="flex items-end gap-space-sm bg-white border border-neutral-200 rounded-lg p-space-sm">
+    <div className="flex items-center gap-space-sm bg-white border border-neutral-200 rounded-lg p-space-sm">
       <textarea
         ref={textareaRef}
         value={value}
