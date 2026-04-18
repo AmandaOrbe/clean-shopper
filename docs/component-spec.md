@@ -58,7 +58,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 
   ├── <ProductImage> aspect-[4/3] bg-neutral-100
   │     src = imageUrlTransparent ?? imageUrl
-  │     src ? <img object-contain scale-[0.85] group-hover:scale-100 transition-transform duration-200 loading="lazy" />
+  │     src ? <img object-contain scale-[0.85] group-hover:scale-90 transition-transform duration-200 loading="lazy" />
   │         : <Package size={48} text-neutral-400 /> (placeholder)
   │
   └── <div> p-space-xl flex flex-col gap-space-md flex-1
@@ -80,7 +80,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | State | Treatment |
 |---|---|
 | Default | `shadow-sm`, no border |
-| Hover (interactive only) | `hover:shadow-md`; image scales 85% → 100% over 200ms |
+| Hover (interactive only) | `hover:shadow-md`; image scales 85% → 90% over 200ms |
 | Save default | Secondary Button, label "Save to List" |
 | Save active | Ghost Button, label "✓ Saved" |
 | Loading | Image skeleton block (`bg-neutral-200 animate-pulse` at 4:3) + body skeleton bars |

@@ -11,7 +11,7 @@ Product images inside `ProductCard` currently fill the full 4:3 image box via `o
 ## Scope
 
 **In scope:**
-- `ProductCard` real-image branch (when `imageUrlTransparent` or `imageUrl` resolves): the `<img>` scales from 85% to 100% on card hover, with a 200ms transform transition.
+- `ProductCard` real-image branch (when `imageUrlTransparent` or `imageUrl` resolves): the `<img>` scales from 85% to 90% on card hover, with a 200ms transform transition.
 - The `<article>` card becomes a Tailwind `group` so the image can react to parent hover via `group-hover:` utilities.
 - Component spec (`docs/component-spec.md`) updated to document the hover treatment.
 
@@ -67,7 +67,7 @@ className={[
 Change the className to:
 
 ```
-w-full h-full object-contain scale-[0.85] group-hover:scale-100 transition-transform duration-200
+w-full h-full object-contain scale-[0.85] group-hover:scale-90 transition-transform duration-200
 ```
 
 The placeholder `<div>` containing `<Package />` is not modified.
@@ -95,7 +95,7 @@ If the States table in the spec is a natural home for the hover behavior, add a 
 
 | State | Treatment |
 |---|---|
-| Hover (interactive only) | `hover:shadow-md`, image scales 85% → 100% over 200ms |
+| Hover (interactive only) | `hover:shadow-md`, image scales 85% → 90% over 200ms |
 
 (Update the existing `Hover` row rather than creating a duplicate.)
 
