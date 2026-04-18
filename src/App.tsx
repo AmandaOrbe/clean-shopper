@@ -34,9 +34,9 @@ function App() {
   return (
     <AuthProvider>
       <ToastProvider>
-        <AuthModalProvider>
-          <SavedProductsProvider>
-            <BrowserRouter>
+        <SavedProductsProvider>
+          <BrowserRouter>
+            <AuthModalProvider>
               <Routes>
                 {/* Auth pages — no NavBar */}
                 <Route path="/login" element={<SignInPage />} />
@@ -52,9 +52,9 @@ function App() {
                   <Route path="/playground" element={<PlaygroundPage />} />
                 </Route>
               </Routes>
-            </BrowserRouter>
-          </SavedProductsProvider>
-        </AuthModalProvider>
+            </AuthModalProvider>
+          </BrowserRouter>
+        </SavedProductsProvider>
       </ToastProvider>
     </AuthProvider>
   );
