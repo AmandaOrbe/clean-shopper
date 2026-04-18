@@ -8,6 +8,8 @@ import { useToggleSaveProduct } from '../../lib/use-toggle-save-product';
 interface AssistantMessageProps {
   message: Extract<Message, { role: 'assistant' } | { role: 'error' }>;
   onRetry?: () => void;
+  saved?: Set<number>;
+  onToggleSave?: (id: number) => void;
 }
 
 const ProductGrid: FC<{ products: ChatProduct[] }> = ({ products }) => {
@@ -34,7 +36,7 @@ const ProductGrid: FC<{ products: ChatProduct[] }> = ({ products }) => {
   );
 };
 
-const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry }) => {
+const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry, saved, onToggleSave }) => {
   if (message.role === 'error') {
     return (
       <div className="bg-neutral-50 border border-neutral-200 rounded-lg px-space-md py-space-sm max-w-[80%]">
@@ -53,7 +55,9 @@ const AssistantMessage: FC<AssistantMessageProps> = ({ message, onRetry }) => {
       <div className="bg-neutral-50 border border-neutral-200 rounded-lg px-space-md py-space-sm max-w-[80%] whitespace-pre-wrap">
         {message.text}
       </div>
-      {message.products.length > 0 && <ProductGrid products={message.products} />}
+      {message.products.length > 0 && saved && onToggleSave && (
+        <ProductGrid products={message.products} saved={saved} onToggleSave={onToggleSave} />
+      )}
     </div>
   );
 };

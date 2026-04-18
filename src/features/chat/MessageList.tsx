@@ -9,9 +9,11 @@ interface MessageListProps {
   messages: Message[];
   isLoading: boolean;
   onRetry: () => void;
+  saved: Set<number>;
+  onToggleSave: (id: number) => void;
 }
 
-const MessageList: FC<MessageListProps> = ({ messages, isLoading, onRetry }) => {
+const MessageList: FC<MessageListProps> = ({ messages, isLoading, onRetry, saved, onToggleSave }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,6 +30,8 @@ const MessageList: FC<MessageListProps> = ({ messages, isLoading, onRetry }) => 
             key={i}
             message={m}
             onRetry={m.role === 'error' ? onRetry : undefined}
+            saved={saved}
+            onToggleSave={onToggleSave}
           />
         )
       )}
