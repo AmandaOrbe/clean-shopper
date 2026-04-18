@@ -44,7 +44,7 @@ const ChatEmptyState: FC<ChatEmptyStateProps> = ({ onPickPrompt }) => (
           key={label}
           type="button"
           onClick={() => onPickPrompt(example)}
-          className="text-left flex flex-col bg-surface border border-neutral-200 rounded-lg p-space-lg hover:border-primary hover:shadow-sm transition-all cursor-pointer"
+          className="text-left flex flex-col bg-white border border-neutral-200 rounded-lg p-space-lg hover:border-primary hover:shadow-sm transition-all cursor-pointer"
         >
           <div className="flex items-center gap-space-sm text-primary">
             <Icon size={20} weight="bold" />
