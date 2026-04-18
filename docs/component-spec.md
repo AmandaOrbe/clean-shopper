@@ -81,7 +81,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 |---|---|
 | Default | `shadow-sm`, no border |
 | Hover (interactive only) | `hover:shadow-md`; image scales 85% → 90% over 200ms |
-| Save default | Secondary Button, label "Save to List" |
+| Save default | Primary Button, label "Save to List" |
 | Save active | Ghost Button, label "✓ Saved" |
 | Loading | Image skeleton block (`bg-neutral-200 animate-pulse` at 4:3) + body skeleton bars |
 

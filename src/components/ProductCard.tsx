@@ -162,7 +162,7 @@ const ProductCard: FC<ProductCardProps> = ({
           >
             <Button
               label={isSaved ? '✓ Saved' : 'Save to List'}
-              variant={isSaved ? 'ghost' : 'secondary'}
+              variant={isSaved ? 'ghost' : 'primary'}
               icon={<BookmarkSimple size={16} weight={isSaved ? 'fill' : 'regular'} />}
               onClick={onSave}
             />
