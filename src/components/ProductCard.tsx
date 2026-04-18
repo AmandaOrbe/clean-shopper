@@ -59,7 +59,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
 const ProductCardSkeleton: FC = () => (
   <div
-    className="bg-surface rounded-md shadow-sm overflow-hidden"
+    className="bg-surface border border-neutral-200 rounded-md shadow-sm overflow-hidden"
     aria-busy="true"
     aria-label="Loading product"
   >
@@ -114,10 +114,10 @@ const ProductCard: FC<ProductCardProps> = ({
           : undefined
       }
       className={[
-        'group bg-surface rounded-md shadow-sm overflow-hidden',
+        'group bg-surface border border-neutral-200 rounded-md shadow-sm overflow-hidden',
         'flex flex-col h-full',
-        'transition-shadow duration-200',
-        'hover:shadow-md',
+        'transition-all duration-200',
+        'hover:border-primary hover:shadow-md',
         isInteractive ? 'cursor-pointer' : '',
       ]
         .filter(Boolean)
