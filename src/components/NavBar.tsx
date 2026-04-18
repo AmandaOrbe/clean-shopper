@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { MagnifyingGlass, Rows, BookmarkSimple, ShoppingCart, ChatCircle } from '@phosphor-icons/react';
+import { MagnifyingGlass, Rows, ShoppingCart, ChatCircle } from '@phosphor-icons/react';
 import { useAuth } from '../lib/auth-context';
 import { supabase } from '../lib/supabase';
 
@@ -9,7 +9,6 @@ const NAV_ITEMS = [
   { label: 'Chat',          route: '/chat',     icon: ChatCircle      },
   { label: 'Search',        route: '/search',   icon: MagnifyingGlass },
   { label: 'Browse',        route: '/browse',   icon: Rows            },
-  { label: 'My Library',    route: '/library',  icon: BookmarkSimple  },
   { label: 'Shopping List', route: '/list',     icon: ShoppingCart    },
 ] as const;
 

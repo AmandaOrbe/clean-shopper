@@ -3,6 +3,8 @@ import ProductCard from '../../components/ProductCard';
 import type { SafetyRating } from '../../components/ProductCard';
 import FilterPill from '../../components/FilterPill';
 import { supabase } from '../../lib/supabase';
+import { useSavedProducts } from '../../lib/saved-products-context';
+import { useToggleSaveProduct } from '../../lib/use-toggle-save-product';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -25,7 +27,8 @@ const BrowsePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [saved, setSaved] = useState<Set<number>>(new Set());
+  const { isSaved } = useSavedProducts();
+  const toggleSave = useToggleSaveProduct();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,18 +51,6 @@ const BrowsePage = () => {
   const visibleProducts = activeCategory
     ? products.filter(p => p.category === activeCategory)
     : products;
-
-  const toggleSave = (id: number) => {
-    setSaved(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(prev => (prev === category ? null : category));
@@ -107,7 +98,7 @@ const BrowsePage = () => {
                 imageUrlTransparent={product.image_url_transparent ?? undefined}
                 retailer={product.retailer ?? undefined}
                 onSave={() => toggleSave(product.id)}
-                isSaved={saved.has(product.id)}
+                isSaved={isSaved(product.id)}
               />
             ))}
       </div>

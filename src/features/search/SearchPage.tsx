@@ -4,6 +4,8 @@ import ProductCard from '../../components/ProductCard';
 import EmptyState from '../../components/EmptyState';
 import type { SafetyRating } from '../../components/ProductCard';
 import { supabase } from '../../lib/supabase';
+import { useSavedProducts } from '../../lib/saved-products-context';
+import { useToggleSaveProduct } from '../../lib/use-toggle-save-product';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -27,7 +29,8 @@ const SearchPage = () => {
   const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [saved, setSaved] = useState<Set<number>>(new Set());
+  const { isSaved } = useSavedProducts();
+  const toggleSave = useToggleSaveProduct();
 
   const handleSearch = async () => {
     const trimmed = query.trim();
@@ -49,18 +52,6 @@ const SearchPage = () => {
     }
 
     setLoading(false);
-  };
-
-  const toggleSave = (id: number) => {
-    setSaved(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
   };
 
   return (
@@ -120,7 +111,7 @@ const SearchPage = () => {
                 imageUrlTransparent={product.image_url_transparent ?? undefined}
                 retailer={product.retailer ?? undefined}
                 onSave={() => toggleSave(product.id)}
-                isSaved={saved.has(product.id)}
+                isSaved={isSaved(product.id)}
               />
             ))}
           </div>

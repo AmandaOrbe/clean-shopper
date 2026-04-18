@@ -1,5 +1,6 @@
 import { useEffect, type FC } from 'react';
 import { CheckCircle, WarningCircle, Info, XCircle, X } from '@phosphor-icons/react';
+import Button from './Button';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -11,6 +12,7 @@ export interface ToastProps {
   variant?: ToastVariant;
   duration?: number; // ms, 0 = persist until dismissed
   onDismiss: (id: string) => void;
+  action?: { label: string; onClick: () => void };
 }
 
 // ─── Config ───────────────────────────────────────────────────────────────────
@@ -50,6 +52,7 @@ const Toast: FC<ToastProps> = ({
   variant = 'info',
   duration = 4000,
   onDismiss,
+  action,
 }) => {
   const { icon: Icon, classes, iconClass } = variantConfig[variant];
 
@@ -76,6 +79,18 @@ const Toast: FC<ToastProps> = ({
       </span>
 
       <p className="text-small text-neutral-900 flex-1">{message}</p>
+
+      {action && (
+        <Button
+          variant="ghost"
+          size="sm"
+          label={action.label}
+          onClick={() => {
+            action.onClick();
+            onDismiss(id);
+          }}
+        />
+      )}
 
       <button
         onClick={() => onDismiss(id)}
