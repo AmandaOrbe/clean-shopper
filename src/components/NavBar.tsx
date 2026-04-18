@@ -25,14 +25,14 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="bg-primary-dark px-space-2xl py-space-md flex items-center justify-between">
+    <nav className="bg-primary-dark px-space-2xl py-space-md flex items-center gap-space-xl">
       {/* ── App name ── */}
       <Link to="/" className="text-h3 text-neutral-50 font-bold no-underline">
         Clean Shopper
       </Link>
 
       {/* ── Nav links ── */}
-      <ul className="flex items-center gap-space-xl list-none m-0 p-0">
+      <ul className="ml-auto flex items-center gap-space-xl list-none m-0 p-0">
         {NAV_ITEMS.map(({ label, route, icon: Icon }) => {
           const isActive = pathname === route;
           return (
