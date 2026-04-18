@@ -5,45 +5,32 @@ import type { SafetyRating } from './ProductCard';
 
 export interface SafetyBadgeProps {
   rating: SafetyRating;
-  size?: 'sm' | 'md';
+  score?: number;
 }
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-const ratingConfig: Record<SafetyRating, { label: string; classes: string }> = {
-  clean: {
-    label: 'Clean',
-    classes: 'bg-success/10 text-success border border-success/20',
-  },
-  caution: {
-    label: 'Caution',
-    classes: 'bg-warning/10 text-warning border border-warning/20',
-  },
-  avoid: {
-    label: 'Avoid',
-    classes: 'bg-error/10 text-error border border-error/20',
-  },
-};
-
-const sizeClasses: Record<'sm' | 'md', string> = {
-  md: 'px-space-sm py-space-xs text-small',
-  sm: 'px-space-xs py-space-xs text-micro',
+const ratingConfig: Record<SafetyRating, { label: string; color: string }> = {
+  clean:   { label: 'Clean',   color: 'text-success' },
+  caution: { label: 'Caution', color: 'text-warning' },
+  avoid:   { label: 'Avoid',   color: 'text-error'   },
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-const SafetyBadge: FC<SafetyBadgeProps> = ({ rating, size = 'md' }) => {
-  const { label, classes } = ratingConfig[rating];
+const SafetyBadge: FC<SafetyBadgeProps> = ({ rating, score }) => {
+  const { label, color } = ratingConfig[rating];
+  const text = score !== undefined ? `${score} · ${label.toUpperCase()}` : label.toUpperCase();
 
   return (
     <span
       className={[
-        'inline-flex items-center rounded-full font-semibold shrink-0',
-        sizeClasses[size],
-        classes,
+        'inline-flex items-center shrink-0',
+        'text-small font-bold tracking-widest uppercase',
+        color,
       ].join(' ')}
     >
-      {label}
+      {text}
     </span>
   );
 };
