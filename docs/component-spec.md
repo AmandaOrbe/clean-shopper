@@ -66,9 +66,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
         │     ├── <div> flex flex-col gap-space-sm min-w-0
         │     │     ├── <h3> text-h3 text-neutral-900 line-clamp-2  ← title truncates at 2 lines
         │     │     └── <span> text-small text-neutral-400  ← brand (optional)
-        │     └── <div> flex flex-col items-end gap-space-xs shrink-0
-        │           ├── <SafetyBadge rating={safetyRating} />
-        │           └── <span> text-micro text-neutral-400  ← score (optional)
+        │     └── <SafetyBadge rating={safetyRating} score={safetyScore} />
         │
         ├── <CategoryTag label={category} />
         ├── <p> text-body text-neutral-600  ← description
@@ -97,42 +95,42 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 
 ## 2. SafetyBadge
 
-**Purpose:** Renders a color-coded pill label communicating a product's clean / caution / avoid rating at a glance.
+**Purpose:** Renders the safety rating as a short uppercase, bold, letter-spaced line of semantic-colored text. When a numeric score is provided, it appears before the label separated by a middle dot (`92 · CLEAN`).
 
-**Used in:** ProductCard, product detail view, comparison table.
+**Used in:** ProductCard. Intended for any future surface that needs to communicate a clean / caution / avoid rating.
 
 ### Props
 | Prop | Type | Required | Default | Notes |
 |---|---|---|---|---|
-| `rating` | `'clean' \| 'caution' \| 'avoid'` | ✅ | — | Determines color treatment |
-| `size` | `'sm' \| 'md'` | ❌ | `'md'` | `sm` for dense contexts like comparison tables |
+| `rating` | `'clean' \| 'caution' \| 'avoid'` | ✅ | — | Drives the semantic color and the label text. |
+| `score` | `number` | ❌ | — | When provided, rendered before the label as `{score} · {LABEL}`. When omitted, only the label is rendered. |
 
 ### Visual Structure
 ```
 <span>
-  inline-flex items-center rounded-full font-semibold
+  inline-flex items-center shrink-0
+  text-small font-bold tracking-widest uppercase
+  rating-color (text-success | text-warning | text-error)
 
-  Size md: px-space-sm py-space-xs text-small
-  Size sm: px-space-xs py-space-xs text-micro
-
-  Rating colors:
-  clean   → bg-success/10  text-success  border border-success/20
-  caution → bg-warning/10  text-warning  border border-warning/20
-  avoid   → bg-error/10    text-error    border border-error/20
+  content:
+    score !== undefined
+      ? `{score} · {LABEL}`
+      : `{LABEL}`
+    (LABEL is the upper-cased rating name)
 ```
 
 ### States
-| State | Treatment |
+| Rating | Treatment |
 |---|---|
-| clean | `bg-success/10 text-success border-success/20` — label: "Clean" |
-| caution | `bg-warning/10 text-warning border-warning/20` — label: "Caution" |
-| avoid | `bg-error/10 text-error border-error/20` — label: "Avoid" |
+| clean   | `text-success` — label `Clean`   (rendered `92 · CLEAN` when score is supplied, else `CLEAN`)   |
+| caution | `text-warning` — label `Caution` (rendered `54 · CAUTION` when score is supplied, else `CAUTION`) |
+| avoid   | `text-error`   — label `Avoid`   (rendered `18 · AVOID` when score is supplied, else `AVOID`)   |
 
 ### Usage Rules
 - **Use** anywhere a safety rating needs to be communicated visually.
-- **Do not use** semantic colors (`success`, `warning`, `error`) for any other purpose — they are reserved for safety ratings.
+- **Do not use** the semantic color utilities (`text-success`, `text-warning`, `text-error`) for any other purpose — they are reserved for safety ratings.
 - **Do not** create additional rating values beyond the three defined. If the rating is unknown, omit the badge entirely.
-- Always display the text label alongside the color. Never rely on color alone.
+- **Do not** wrap the badge in a pill or card chrome — it is intentionally purely typographic.
 
 ---
 
