@@ -114,7 +114,7 @@ const ProductCard: FC<ProductCardProps> = ({
           : undefined
       }
       className={[
-        'bg-white rounded-lg shadow-sm overflow-hidden',
+        'group bg-white rounded-lg shadow-sm overflow-hidden',
         'flex flex-col h-full',
         'transition-shadow duration-200',
         'hover:shadow-md',
