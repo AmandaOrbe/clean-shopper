@@ -79,7 +79,7 @@ const SearchPage = () => {
 
       {/* Results */}
       {loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-xl">
           {Array.from({ length: 3 }).map((_, i) => (
             <ProductCard
               key={i}
@@ -106,7 +106,7 @@ const SearchPage = () => {
           <p className="text-small text-neutral-400 mb-space-lg">
             {results.length} {results.length === 1 ? 'result' : 'results'} for "{query}"
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-xl">
             {results.map(product => (
               <ProductCard
                 key={product.id}
