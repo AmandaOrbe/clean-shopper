@@ -52,7 +52,7 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 ### Visual Structure
 ```
 <article>
-  group bg-white rounded-lg shadow-sm overflow-hidden
+  group bg-white rounded-md shadow-sm overflow-hidden
   flex flex-col h-full transition-shadow duration-200 hover:shadow-md
   [interactive: cursor-pointer]
 

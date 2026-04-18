@@ -59,7 +59,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
 const ProductCardSkeleton: FC = () => (
   <div
-    className="bg-white rounded-lg shadow-sm overflow-hidden"
+    className="bg-white rounded-md shadow-sm overflow-hidden"
     aria-busy="true"
     aria-label="Loading product"
   >
@@ -114,7 +114,7 @@ const ProductCard: FC<ProductCardProps> = ({
           : undefined
       }
       className={[
-        'group bg-white rounded-lg shadow-sm overflow-hidden',
+        'group bg-white rounded-md shadow-sm overflow-hidden',
         'flex flex-col h-full',
         'transition-shadow duration-200',
         'hover:shadow-md',
