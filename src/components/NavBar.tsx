@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MagnifyingGlass, Rows, BookmarkSimple, ShoppingCart, ChatCircle } from '@phosphor-icons/react';
 import { useAuth } from '../lib/auth-context';
 import { supabase } from '../lib/supabase';
-import Button from './Button';
 
 // ─── Nav Items ────────────────────────────────────────────────────────────────
 
@@ -26,9 +25,9 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="bg-neutral-50 border-b border-neutral-200 px-space-2xl py-space-md flex items-center justify-between">
+    <nav className="bg-primary-dark px-space-2xl py-space-md flex items-center justify-between">
       {/* ── App name ── */}
-      <Link to="/" className="text-h3 text-primary font-bold no-underline">
+      <Link to="/" className="text-h3 text-neutral-50 font-bold no-underline">
         Clean Shopper
       </Link>
 
@@ -43,8 +42,8 @@ const NavBar = () => {
                 className={[
                   'inline-flex items-center gap-space-xs text-body transition-colors duration-150 no-underline',
                   isActive
-                    ? 'text-primary font-semibold'
-                    : 'text-neutral-600 hover:text-neutral-900',
+                    ? 'text-accent font-semibold'
+                    : 'text-white/70 hover:text-white',
                 ].join(' ')}
                 aria-current={isActive ? 'page' : undefined}
               >
@@ -58,19 +57,21 @@ const NavBar = () => {
 
       {/* ── Auth ── */}
       {session ? (
-        <Button
-          label="Log out"
-          variant="ghost"
-          size="sm"
+        <button
+          type="button"
           onClick={handleSignOut}
-        />
+          className="inline-flex items-center text-small font-semibold text-white/80 hover:text-accent px-space-md py-space-xs rounded-full hover:bg-white/10 transition-colors"
+        >
+          Log out
+        </button>
       ) : (
-        <Button
-          label="Log in"
-          variant="secondary"
-          size="sm"
+        <button
+          type="button"
           onClick={() => navigate('/login')}
-        />
+          className="inline-flex items-center text-small font-semibold text-white/80 hover:text-accent px-space-md py-space-xs rounded-full border border-white/20 hover:border-accent/40 transition-colors"
+        >
+          Log in
+        </button>
       )}
     </nav>
   );
