@@ -19,6 +19,10 @@
   --color-warning: #D97706;
   --color-error:   #DC2626;
 
+  /* ─── Surface Colors ─────────────────────────────────────── */
+  --color-paper:   #FCFCF8;
+  --color-surface: #F0F1E6;
+
   /* ─── Neutral Colors ─────────────────────────────────────── */
   --color-neutral-50:  #FFFFFF;
   --color-neutral-100: #F5F5F0;

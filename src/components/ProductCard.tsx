@@ -34,11 +34,11 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
   const src = imageUrlTransparent ?? imageUrl;
   if (src) {
     return (
-      <div className="aspect-[4/3] w-full bg-neutral-100 overflow-hidden">
+      <div className="aspect-[4/3] w-full bg-surface overflow-hidden">
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain scale-[0.85] group-hover:scale-90 transition-transform duration-200"
           loading="lazy"
         />
       </div>
@@ -47,7 +47,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
   return (
     <div
-      className="aspect-[4/3] w-full bg-neutral-100 flex items-center justify-center"
+      className="aspect-[4/3] w-full bg-surface flex items-center justify-center"
       aria-hidden="true"
     >
       <Package size={48} className="text-neutral-400" />
@@ -59,7 +59,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
 const ProductCardSkeleton: FC = () => (
   <div
-    className="bg-white rounded-lg shadow-sm overflow-hidden"
+    className="bg-surface border border-neutral-200 rounded-md shadow-sm overflow-hidden"
     aria-busy="true"
     aria-label="Loading product"
   >
@@ -114,10 +114,10 @@ const ProductCard: FC<ProductCardProps> = ({
           : undefined
       }
       className={[
-        'bg-white rounded-lg shadow-sm overflow-hidden',
+        'group bg-surface border border-neutral-200 rounded-md shadow-sm overflow-hidden',
         'flex flex-col h-full',
-        'transition-shadow duration-200',
-        'hover:shadow-md',
+        'transition-all duration-200',
+        'hover:border-primary hover:shadow-md',
         isInteractive ? 'cursor-pointer' : '',
       ]
         .filter(Boolean)
@@ -129,22 +129,16 @@ const ProductCard: FC<ProductCardProps> = ({
       {/* ── Body ── */}
       <div className="p-space-xl flex flex-col gap-space-md flex-1">
         {/* Header: name + safety badge */}
-        <header className="flex items-start justify-between gap-space-sm">
-          <div className="flex flex-col gap-space-sm min-w-0">
-            <h3 className="text-h3 text-neutral-900 line-clamp-3">{name}</h3>
-            {brand && (
-              <span className="text-small text-neutral-400">{brand}</span>
+        <header className="flex flex-col gap-space-sm">
+          <div className="flex items-center justify-between gap-space-sm">
+            {brand ? (
+              <span className="text-small text-neutral-400 min-w-0 truncate">{brand}</span>
+            ) : (
+              <span />
             )}
+            <SafetyBadge rating={safetyRating} score={safetyScore} />
           </div>
-
-          <div className="flex flex-col items-end gap-space-xs shrink-0">
-            <SafetyBadge rating={safetyRating} />
-            {safetyScore !== undefined && (
-              <span className="text-micro text-neutral-400">
-                {safetyScore}/100
-              </span>
-            )}
-          </div>
+          <h3 className="text-h3 text-neutral-900 line-clamp-2">{name}</h3>
         </header>
 
         {/* Category */}
@@ -168,7 +162,7 @@ const ProductCard: FC<ProductCardProps> = ({
           >
             <Button
               label={isSaved ? '✓ Saved' : 'Save to List'}
-              variant={isSaved ? 'ghost' : 'secondary'}
+              variant={isSaved ? 'ghost' : 'primary'}
               icon={<BookmarkSimple size={16} weight={isSaved ? 'fill' : 'regular'} />}
               onClick={onSave}
             />

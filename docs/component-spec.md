@@ -52,23 +52,21 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 ### Visual Structure
 ```
 <article>
-  bg-white rounded-lg shadow-sm overflow-hidden
-  flex flex-col h-full transition-shadow duration-200 hover:shadow-md
+  group bg-surface border border-neutral-200 rounded-md shadow-sm overflow-hidden
+  flex flex-col h-full transition-all duration-200 hover:border-primary hover:shadow-md
   [interactive: cursor-pointer]
 
   ├── <ProductImage> aspect-[4/3] bg-neutral-100
   │     src = imageUrlTransparent ?? imageUrl
-  │     src ? <img object-contain loading="lazy" />
+  │     src ? <img object-contain scale-[0.85] group-hover:scale-90 transition-transform duration-200 loading="lazy" />
   │         : <Package size={48} text-neutral-400 /> (placeholder)
   │
   └── <div> p-space-xl flex flex-col gap-space-md flex-1
-        ├── <header> flex items-start justify-between gap-space-sm
-        │     ├── <div> flex flex-col gap-space-sm min-w-0
-        │     │     ├── <h3> text-h3 text-neutral-900
-        │     │     └── <span> text-small text-neutral-400  ← brand (optional)
-        │     └── <div> flex flex-col items-end gap-space-xs shrink-0
-        │           ├── <SafetyBadge rating={safetyRating} />
-        │           └── <span> text-micro text-neutral-400  ← score (optional)
+        ├── <header> flex flex-col gap-space-sm
+        │     ├── <div> flex items-center justify-between gap-space-sm     ← top row: brand + badge
+        │     │     ├── <span> text-small text-neutral-400 min-w-0 truncate  ← brand (optional; empty span placeholder otherwise)
+        │     │     └── <SafetyBadge rating={safetyRating} score={safetyScore} />
+        │     └── <h3> text-h3 text-neutral-900 line-clamp-2                ← title, truncates at 2 lines
         │
         ├── <CategoryTag label={category} />
         ├── <p> text-body text-neutral-600  ← description
@@ -82,8 +80,8 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | State | Treatment |
 |---|---|
 | Default | `shadow-sm`, no border |
-| Hover (interactive only) | `hover:shadow-md` |
-| Save default | Secondary Button, label "Save to List" |
+| Hover (interactive only) | `hover:border-primary hover:shadow-md`; image scales 85% → 90% over 200ms |
+| Save default | Primary Button, label "Save to List" |
 | Save active | Ghost Button, label "✓ Saved" |
 | Loading | Image skeleton block (`bg-neutral-200 animate-pulse` at 4:3) + body skeleton bars |
 
@@ -97,42 +95,42 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 
 ## 2. SafetyBadge
 
-**Purpose:** Renders a color-coded pill label communicating a product's clean / caution / avoid rating at a glance.
+**Purpose:** Renders the safety rating as a short uppercase, bold, letter-spaced line of semantic-colored text. When a numeric score is provided, it appears before the label separated by a middle dot (`92 · CLEAN`).
 
-**Used in:** ProductCard, product detail view, comparison table.
+**Used in:** ProductCard. Intended for any future surface that needs to communicate a clean / caution / avoid rating.
 
 ### Props
 | Prop | Type | Required | Default | Notes |
 |---|---|---|---|---|
-| `rating` | `'clean' \| 'caution' \| 'avoid'` | ✅ | — | Determines color treatment |
-| `size` | `'sm' \| 'md'` | ❌ | `'md'` | `sm` for dense contexts like comparison tables |
+| `rating` | `'clean' \| 'caution' \| 'avoid'` | ✅ | — | Drives the semantic color and the label text. |
+| `score` | `number` | ❌ | — | When provided, rendered before the label as `{score} · {LABEL}`. When omitted, only the label is rendered. |
 
 ### Visual Structure
 ```
 <span>
-  inline-flex items-center rounded-full font-semibold
+  inline-flex items-center shrink-0
+  text-small font-bold tracking-widest uppercase
+  rating-color (text-success | text-warning | text-error)
 
-  Size md: px-space-sm py-space-xs text-small
-  Size sm: px-space-xs py-space-xs text-micro
-
-  Rating colors:
-  clean   → bg-success/10  text-success  border border-success/20
-  caution → bg-warning/10  text-warning  border border-warning/20
-  avoid   → bg-error/10    text-error    border border-error/20
+  content:
+    score !== undefined
+      ? `{score} · {LABEL}`
+      : `{LABEL}`
+    (LABEL is the upper-cased rating name)
 ```
 
 ### States
-| State | Treatment |
+| Rating | Treatment |
 |---|---|
-| clean | `bg-success/10 text-success border-success/20` — label: "Clean" |
-| caution | `bg-warning/10 text-warning border-warning/20` — label: "Caution" |
-| avoid | `bg-error/10 text-error border-error/20` — label: "Avoid" |
+| clean   | `text-success` — label `Clean`   (rendered `92 · CLEAN` when score is supplied, else `CLEAN`)   |
+| caution | `text-warning` — label `Caution` (rendered `54 · CAUTION` when score is supplied, else `CAUTION`) |
+| avoid   | `text-error`   — label `Avoid`   (rendered `18 · AVOID` when score is supplied, else `AVOID`)   |
 
 ### Usage Rules
 - **Use** anywhere a safety rating needs to be communicated visually.
-- **Do not use** semantic colors (`success`, `warning`, `error`) for any other purpose — they are reserved for safety ratings.
+- **Do not use** the semantic color utilities (`text-success`, `text-warning`, `text-error`) for any other purpose — they are reserved for safety ratings.
 - **Do not** create additional rating values beyond the three defined. If the rating is unknown, omit the badge entirely.
-- Always display the text label alongside the color. Never rely on color alone.
+- **Do not** wrap the badge in a pill or card chrome — it is intentionally purely typographic.
 
 ---
 
