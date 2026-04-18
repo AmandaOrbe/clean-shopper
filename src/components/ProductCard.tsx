@@ -129,15 +129,16 @@ const ProductCard: FC<ProductCardProps> = ({
       {/* ── Body ── */}
       <div className="p-space-xl flex flex-col gap-space-md flex-1">
         {/* Header: name + safety badge */}
-        <header className="flex items-start justify-between gap-space-sm">
-          <div className="flex flex-col gap-space-sm min-w-0">
-            <h3 className="text-h3 text-neutral-900 line-clamp-2">{name}</h3>
-            {brand && (
-              <span className="text-small text-neutral-400">{brand}</span>
+        <header className="flex flex-col gap-space-sm">
+          <div className="flex items-center justify-between gap-space-sm">
+            {brand ? (
+              <span className="text-small text-neutral-400 min-w-0 truncate">{brand}</span>
+            ) : (
+              <span />
             )}
+            <SafetyBadge rating={safetyRating} score={safetyScore} />
           </div>
-
-          <SafetyBadge rating={safetyRating} score={safetyScore} />
+          <h3 className="text-h3 text-neutral-900 line-clamp-2">{name}</h3>
         </header>
 
         {/* Category */}
