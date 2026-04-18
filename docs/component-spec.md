@@ -45,7 +45,8 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
 | `onSave` | `() => void` | ❌ | — | Renders a Save to List button inside the card when provided |
 | `isSaved` | `boolean` | ❌ | `false` | Toggles the save button label and style |
 | `isLoading` | `boolean` | ❌ | `false` | Renders skeleton state |
-| `imageUrl` | `string` | ❌ | — | Product image URL. When omitted, renders a neutral placeholder tile at the same aspect ratio with a centered `Package` icon so layout does not shift. |
+| `imageUrl` | `string` | ❌ | — | Fallback product image URL (e.g. original Google Shopping thumbnail). Used when `imageUrlTransparent` is absent. When both are omitted, renders a neutral placeholder tile at the same aspect ratio with a centered `Package` icon so layout does not shift. |
+| `imageUrlTransparent` | `string` | ❌ | — | Preferred image URL: a background-removed transparent PNG (produced by `npm run bg-remove`) that blends seamlessly with the `bg-neutral-100` image container. When present, takes priority over `imageUrl`. |
 | `retailer` | `string` | ❌ | — | Small caption rendered above the save button, prefixed "via" (e.g. "via Target"). `text-micro text-neutral-400 uppercase tracking-wide`. |
 
 ### Visual Structure
@@ -56,8 +57,9 @@ This file is referenced by CLAUDE.md and read by Claude Code at the start of eve
   [interactive: cursor-pointer]
 
   ├── <ProductImage> aspect-[4/3] bg-neutral-100
-  │     imageUrl ? <img object-cover loading="lazy" />
-  │              : <Package size={48} text-neutral-400 /> (placeholder)
+  │     src = imageUrlTransparent ?? imageUrl
+  │     src ? <img object-contain loading="lazy" />
+  │         : <Package size={48} text-neutral-400 /> (placeholder)
   │
   └── <div> p-space-xl flex flex-col gap-space-md flex-1
         ├── <header> flex items-start justify-between gap-space-sm
