@@ -12,7 +12,7 @@ import SignUpPage from './features/auth/SignUpPage';
 
 function AppLayout() {
   return (
-    <div className="min-h-screen bg-[#fcfcf8]">
+    <div className="min-h-screen bg-paper">
       <NavBar />
       <Outlet />
     </div>

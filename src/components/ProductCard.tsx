@@ -34,7 +34,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
   const src = imageUrlTransparent ?? imageUrl;
   if (src) {
     return (
-      <div className="aspect-[4/3] w-full bg-[#f0f1e6] overflow-hidden">
+      <div className="aspect-[4/3] w-full bg-surface overflow-hidden">
         <img
           src={src}
           alt={alt}
@@ -47,7 +47,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
   return (
     <div
-      className="aspect-[4/3] w-full bg-[#f0f1e6] flex items-center justify-center"
+      className="aspect-[4/3] w-full bg-surface flex items-center justify-center"
       aria-hidden="true"
     >
       <Package size={48} className="text-neutral-400" />
@@ -59,7 +59,7 @@ const ProductImage: FC<{ imageUrl?: string; imageUrlTransparent?: string; alt: s
 
 const ProductCardSkeleton: FC = () => (
   <div
-    className="bg-[#f0f1e6] rounded-md shadow-sm overflow-hidden"
+    className="bg-surface rounded-md shadow-sm overflow-hidden"
     aria-busy="true"
     aria-label="Loading product"
   >
@@ -114,7 +114,7 @@ const ProductCard: FC<ProductCardProps> = ({
           : undefined
       }
       className={[
-        'group bg-[#f0f1e6] rounded-md shadow-sm overflow-hidden',
+        'group bg-surface rounded-md shadow-sm overflow-hidden',
         'flex flex-col h-full',
         'transition-shadow duration-200',
         'hover:shadow-md',

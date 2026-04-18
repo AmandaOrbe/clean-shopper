@@ -20,6 +20,8 @@ export default {
         success: '#16A34A',
         warning: '#D97706',
         error: '#DC2626',
+        paper: '#FCFCF8',
+        surface: '#F0F1E6',
         neutral: {
           50: '#FFFFFF',
           100: '#F5F5F0',

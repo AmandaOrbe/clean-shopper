@@ -43,11 +43,17 @@ Clean Shopper feels like a California farmers market that got a modern rebrand �
 | warning | #D97706 | Caution-level ingredient ratings, partial match alerts, items needing attention. Not used for brand accents. |
 | error | #DC2626 | Error states, avoid ingredient ratings, destructive action confirmations. Not used for accent or decorative purposes. |
 
+### Surface Colors
+| Token Name | Hex Value | Usage Rule |
+|---|---|---|
+| paper | #FCFCF8 | Page / app shell background. A warm near-white "canvas" the whole app rests on. Never use for elevated surfaces. |
+| surface | #F0F1E6 | Elevated content surfaces — ProductCard background, product image region. Slightly darker than `paper` so cards read as lifted tiles against the page. |
+
 ### Neutral Colors
 | Token Name | Hex Value | Usage Rule |
 |---|---|---|
-| neutral-50 | #FFFFFF | Cards, nav background, modal surfaces. Pure white — the dominant surface for elevated content. |
-| neutral-100 | #F5F5F0 | Page/body background, input field fills. Slight warmth to prevent sterility. |
+| neutral-50 | #FFFFFF | Modal surfaces, nav background, input fills on colored sections. Pure white — reserved for contexts where `surface` would be inappropriate. |
+| neutral-100 | #F5F5F0 | Section tints inside `paper` pages, input field fills at rest. Slight warmth to prevent sterility. |
 | neutral-200 | #E2E2DA | Borders, dividers, input outlines at rest, skeleton loader fills. |
 | neutral-400 | #98988E | Placeholder text, disabled input text, inactive icon fills. |
 | neutral-600 | #464640 | Secondary body text, supporting copy, metadata. High contrast on white — meets WCAG AA. |

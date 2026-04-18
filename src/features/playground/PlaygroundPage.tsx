@@ -55,6 +55,26 @@ const PlaygroundPage = () => {
     <main className="py-space-2xl px-space-3xl max-w-4xl">
       <h1 className="text-h1 text-neutral-900 mb-space-2xl">Component Playground</h1>
 
+      {/* ── Surface Colors ── */}
+      <Section title="Surface Colors">
+        <Row label="Tokens">
+          <div className="flex gap-space-md">
+            <div className="flex flex-col items-start gap-space-xs">
+              <div className="w-32 h-20 rounded-sm bg-paper border border-neutral-200" />
+              <span className="text-small font-semibold text-neutral-900">paper</span>
+              <span className="text-micro text-neutral-400 font-mono">#FCFCF8</span>
+              <span className="text-micro text-neutral-400">Page / app shell bg</span>
+            </div>
+            <div className="flex flex-col items-start gap-space-xs">
+              <div className="w-32 h-20 rounded-sm bg-surface border border-neutral-200" />
+              <span className="text-small font-semibold text-neutral-900">surface</span>
+              <span className="text-micro text-neutral-400 font-mono">#F0F1E6</span>
+              <span className="text-micro text-neutral-400">Elevated cards</span>
+            </div>
+          </div>
+        </Row>
+      </Section>
+
       {/* ── Button ── */}
       <Section title="Button">
         <Row label="Variants — md">
